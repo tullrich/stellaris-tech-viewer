@@ -9,7 +9,7 @@ import { TechnologyLibraryService } from '../services/technology-library/technol
 export class TechnologyListComponent implements OnInit {
 
   constructor(
-    private store: TechnologyLibraryService
+    public store: TechnologyLibraryService
   ) { }
 
   ngOnInit() {
