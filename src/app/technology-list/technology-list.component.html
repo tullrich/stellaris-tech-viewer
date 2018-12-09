@@ -1,17 +1,22 @@
 <div class="container-fluid py-4">
-  <div class="d-flex flex-wrap justify-content-center">
-    <div *ngFor="let tech of store.techs" class="tech card m-2 align-top" [ngClass]="store.getAreaClass(tech)">
-      <div class="card-body">
-        <div class="float-left mr-3 icon">
-          <img src="assets/img/icons/{{ tech.id }}.png" height="52px" width="52px">
+  <div class="row px-5">
+    <div class="d-flex w-100 mb-3">
+      <div class="mx-auto"><h1 class="display">Technologies ({{ store.techs.length }})</h1></div>
+    </div>
+    <div class="d-flex flex-wrap justify-content-around">
+      <div *ngFor="let tech of store.techs" class="tech card my-2 align-top" [ngClass]="store.getAreaClass(tech)">
+        <div class="card-body">
+          <div class="float-left mr-3 icon">
+            <img src="assets/img/icons/{{ tech.id }}.png" height="52px" width="52px">
+          </div>
+          <h5 class="card-title title" [class.rare]="tech.is_rare">{{ tech.name }}</h5>
+          <div class="clearfix mb-3"></div>
+          <p class="card-text">{{ tech.description }}</p>
         </div>
-        <h5 class="card-title title" [class.rare]="tech.is_rare">{{ tech.name }}</h5>
-        <div class="clearfix mb-3"></div>
-        <p class="card-text">{{ tech.description }}</p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">{{ tech.category }} (Tier {{ tech.tier }})</small>
-        <br><small class="text-muted">Cost: {{ tech.cost }}, Weight: {{ tech.weight }}</small>
+        <div class="card-footer">
+          <small class="text-muted">{{ tech.category }} (Tier {{ tech.tier }})</small>
+          <br><small class="text-muted">Cost: {{ tech.cost }}, Weight: {{ tech.weight }}</small>
+        </div>
       </div>
     </div>
   </div>
