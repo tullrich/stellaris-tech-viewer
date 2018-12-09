@@ -1,3 +1,20 @@
-<p>
-  technology-web works!
-</p>
+<div class="tech-web">
+    <div class="edge-canvas">
+      <svg [attr.height.px]="g.graph().height" [attr.width.px]="g.graph().width">
+        <path *ngFor="let e of edges" [attr.d]="strokeEdge(e)"
+          stroke="black" stroke-width="1" fill="none"/>
+      </svg>
+    </div>
+    <div class="tech-nodes">
+      <div class="tech-node" *ngFor="let n of nodes" [ngStyle]="layoutNode(n)"
+        [class.rare]="n.tech.is_rare" [ngClass]="store.getAreaClass(n.tech)">
+        <div class="icon">
+          <img src="assets/img/icons/{{ n.tech.id }}.png" height="52px" width="52px">
+        </div>
+        <div class="body">
+          <h5>{{ n.tech.name }}</h5>
+          <small class="text-muted">{{ n.tech.category }} (Tier {{ n.tech.tier }})</small>
+        </div>
+      </div>
+    </div>
+</div>

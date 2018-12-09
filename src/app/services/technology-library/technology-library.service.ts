@@ -13,7 +13,7 @@ export class TechnologyLibraryService {
   techs: Technology[];
 
   constructor() {
-    let techMap = _.merge(
+    let techData = _.merge(
       require('./data/00_eng_tech.json'),
       require('./data/00_eng_tech_repeatable.json'),
       require('./data/00_eng_weapon_tech.json'),
@@ -26,7 +26,7 @@ export class TechnologyLibraryService {
       require('./data/00_synthetic_dawn_tech.json')
     );
 
-    this.techs = _.chain(techMap)
+    this.techs = _.chain(techData)
       .toPairs()
       .filter(([id, val]) => typeof(val) === "object")
       .map(([id, val]) => {
@@ -35,23 +35,23 @@ export class TechnologyLibraryService {
           name: this.localizeString(id),
           description: this.localizeString(id+"_desc"),
           category: this.parseCategory(val.category),
-          tier: +val.tier,
+          tier: +this.resolveDefine(val.tier),
           cost: this.resolveDefine(val.cost),
           weight: this.resolveDefine(val.weight),
           is_rare: val.is_rare,
           start_tech: val.start_tech,
-          area: val.area
+          area: val.area,
+          prerequisites: val.prerequisites
         }
       })
       .value();
 
+    let techMap = _.keyBy(this.techs, (t) => t.id);
     _.forEach(this.techs, (tech) => {
       if (tech.prerequisites) {
         tech.prerequisites = _.map(tech.prerequisites, (prereq) => techMap[prereq]||prereq);
       }
     });
-
-    console.log(this.techs);
   }
 
   parseCategory(categories: string[]|undefined) {

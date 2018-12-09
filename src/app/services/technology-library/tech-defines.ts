@@ -1,5 +1,8 @@
 
 export const TECH_DEFINES = {
+
+  '@repeatableTechTier': 10,
+
   '@tier1cost1': 1,
   '@tier1cost2': 1,
   '@tier1cost3': 1,

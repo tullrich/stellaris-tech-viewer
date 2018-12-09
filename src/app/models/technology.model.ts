@@ -23,6 +23,6 @@ export interface Technology {
   is_rare: boolean;
   area: string;
 
-  prerequisites: string|Technology[];
+  prerequisites: Technology[];
   potential: (boolean|string)[];
 }
