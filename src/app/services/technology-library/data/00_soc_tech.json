@@ -1,0 +1,6446 @@
+{
+  "tech_planetary_defenses": {
+    "cost": 0,
+    "area": "society",
+    "start_tech": true,
+    "category": [
+      "military_theory"
+    ],
+    "tier": 0
+  },
+  "tech_interplanetary_commerce": {
+    "cost": 0,
+    "area": "society",
+    "start_tech": true,
+    "category": [
+      "statecraft"
+    ],
+    "tier": 0,
+    "potential": {
+      "is_gestalt": false
+    }
+  },
+  "tech_space_trading": {
+    "cost": "@tier1cost3",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_interplanetary_commerce"
+    ],
+    "weight": "@tier1weight3",
+    "potential": {
+      "is_gestalt": false
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 10,
+          "OR": {
+            "has_technology": [
+              "tech_mine_rare_crystals",
+              "tech_rare_crystals"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_prosperity_adopt"
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 2,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_interstellar_economics": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_space_trading"
+    ],
+    "weight": "@tier3weight1",
+    "potential": {
+      "is_gestalt": false
+    },
+    "weight_modifier": {
+      "factor": 2,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_prosperity_adopt"
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 2,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_galactic_markets": {
+    "cost": "@tier4cost1",
+    "area": "society",
+    "tier": 4,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_colonial_centralization",
+      "tech_interstellar_economics"
+    ],
+    "weight": "@tier4weight1",
+    "is_rare": true,
+    "potential": {
+      "is_gestalt": false
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0.25,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_statecraft"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        },
+        {
+          "factor": 0,
+          "num_communications": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_prescient_data_modeling": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 3,
+    "is_rare": true,
+    "ai_update_type": "all",
+    "weight": 0,
+    "weight_modifier": {
+      "factor": 0
+    },
+    "modifier": {
+      "planet_jobs_energy_produces_mult": 0.05
+    }
+  },
+  "tech_industrial_farming": {
+    "cost": 0,
+    "area": "society",
+    "tier": 0,
+    "category": [
+      "biology"
+    ],
+    "start_tech": true
+  },
+  "tech_eco_simulation": {
+    "cost": "@tier1cost1",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_industrial_farming"
+    ],
+    "weight": "@tier1weight1",
+    "modifier": {
+      "planet_farmers_food_produces_mult": 0.1
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0.1,
+          "is_machine_empire": true,
+          "NOR": {
+            "has_valid_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ],
+            "any_owned_planet": {
+              "num_districts": {
+                "type": "district_farming",
+                "value": {
+                  "_operator": ">",
+                  "value": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_pacifist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_pacifist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 1.5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_pacifist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_pacifist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "tech_gene_crops": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_eco_simulation",
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier2weight3",
+    "modifier": {
+      "planet_farmers_food_produces_mult": 0.1
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0.01,
+          "is_machine_empire": true,
+          "NOR": {
+            "has_valid_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ],
+            "any_owned_planet": {
+              "num_districts": {
+                "type": "district_farming",
+                "value": {
+                  "_operator": ">",
+                  "value": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_pacifist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_pacifist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 1.5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_pacifist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_pacifist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "tech_nano_vitality_crops": {
+    "cost": "@tier4cost2",
+    "area": "society",
+    "tier": 4,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_gene_crops",
+      "tech_galactic_administration"
+    ],
+    "weight": "@tier4weight2",
+    "modifier": {
+      "planet_farmers_food_produces_mult": 0.1
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0.01,
+          "is_machine_empire": true,
+          "NOR": {
+            "has_valid_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ],
+            "any_owned_planet": {
+              "num_districts": {
+                "type": "district_farming",
+                "value": {
+                  "_operator": ">",
+                  "value": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_pacifist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_pacifist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 1.5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_pacifist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_pacifist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "tech_nutrient_replication": {
+    "cost": "@tier4cost3",
+    "area": "society",
+    "tier": 4,
+    "is_rare": true,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_nano_vitality_crops"
+    ],
+    "weight": "@tier4weight3",
+    "modifier": {
+      "planet_jobs_food_produces_mult": 0.15
+    },
+    "potential": {
+      "NOT": {
+        "has_authority": "auth_machine_intelligence"
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0.01,
+          "is_machine_empire": true,
+          "NOR": {
+            "has_valid_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ],
+            "any_owned_planet": {
+              "num_districts": {
+                "type": "district_farming",
+                "value": {
+                  "_operator": ">",
+                  "value": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "factor": 0.5,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_biology"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_pacifist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_pacifist"
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_pacifist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_pacifist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "tech_hydroponics": {
+    "cost": "@tier1cost1",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_industrial_farming"
+    ],
+    "weight": "@tier1weight1",
+    "weight_modifier": {
+      "factor": 2,
+      "modifier": [
+        {
+          "factor": 0.01,
+          "is_machine_empire": true,
+          "NOR": {
+            "has_valid_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ],
+            "any_owned_planet": {
+              "num_districts": {
+                "type": "district_farming",
+                "value": {
+                  "_operator": ">",
+                  "value": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "engineering",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "engineering",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_food_processing_1": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_eco_simulation"
+    ],
+    "weight": "@tier1weight2",
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 10,
+          "OR": {
+            "has_technology": [
+              "tech_mine_volatile_motes",
+              "tech_volatile_motes"
+            ]
+          }
+        },
+        {
+          "factor": 0.01,
+          "is_machine_empire": true,
+          "NOR": {
+            "has_valid_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ],
+            "any_owned_planet": {
+              "num_districts": {
+                "type": "district_farming",
+                "value": {
+                  "_operator": ">",
+                  "value": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "engineering",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "engineering",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_food_processing_2": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_food_processing_1",
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier3weight1",
+    "weight_modifier": {
+      "factor": 2,
+      "modifier": [
+        {
+          "factor": 0.01,
+          "is_machine_empire": true,
+          "NOR": {
+            "has_valid_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ],
+            "any_owned_planet": {
+              "num_districts": {
+                "type": "district_farming",
+                "value": {
+                  "_operator": ">",
+                  "value": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "engineering",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "engineering",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_society_1": {
+    "cost": "@tier1cost1",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "biology"
+    ],
+    "weight": "@tier1weight1",
+    "modifier": {
+      "planet_researchers_society_research_produces_mult": 0.2
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 5,
+          "is_ai": true
+        },
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 5
+          }
+        },
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 10
+          }
+        },
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 15
+          }
+        },
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 20
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "weight": 10,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_society_2": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_society_1"
+    ],
+    "weight": "@tier2weight3",
+    "modifier": {
+      "planet_researchers_society_research_produces_mult": 0.2
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 5
+          }
+        },
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 10
+          }
+        },
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 15
+          }
+        },
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 20
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "weight": 10,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_society_3": {
+    "cost": "@tier4cost2",
+    "area": "society",
+    "tier": 4,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_society_2"
+    ],
+    "weight": "@tier4weight2",
+    "modifier": {
+      "planet_researchers_society_research_produces_mult": 0.2
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 25
+          }
+        },
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 30
+          }
+        },
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 35
+          }
+        },
+        {
+          "factor": 2,
+          "years_passed": {
+            "_operator": ">",
+            "value": 40
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "weight": 10,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_alien_life_studies": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "biology"
+    ],
+    "weight": "@tier1weight2",
+    "potential": {
+      "is_regular_empire": true
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2,
+          "has_ethic": "ethic_xenophile"
+        },
+        {
+          "factor": 3,
+          "has_ethic": "ethic_fanatic_xenophile"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_alien_pets_deposit"
+            }
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_xenophile"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_xenophile"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "has_country_flag": "first_alien_life"
+          }
+        }
+      ]
+    }
+  },
+  "tech_colonization_1": {
+    "cost": 0,
+    "area": "society",
+    "tier": 0,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_space_exploration"
+    ],
+    "start_tech": true,
+    "prereqfor_desc": {
+      "ship": {
+        "title": "TECH_UNLOCK_COLONY_SHIP_CONSTRUCTION_TITLE",
+        "desc": "TECH_UNLOCK_COLONY_SHIP_CONSTRUCTION_DESC"
+      }
+    },
+    "weight_modifier": {
+      "factor": 1000
+    },
+    "ai_weight": {
+      "weight": 10000
+    }
+  },
+  "tech_colonization_2": {
+    "cost": "@tier1cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier1weight3",
+    "modifier": {
+      "pop_environment_tolerance": 0.05
+    },
+    "potential": {
+      "OR": {
+        "is_machine_empire": false,
+        "has_civic": [
+          "civic_machine_assimilator",
+          "civic_machine_servitor"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0.7,
+          "OR": {
+            "has_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ]
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 1.5,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_colonization_3": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_2"
+    ],
+    "weight": "@tier2weight3",
+    "modifier": {
+      "pop_environment_tolerance": 0.05
+    },
+    "potential": {
+      "OR": {
+        "is_machine_empire": false,
+        "has_civic": [
+          "civic_machine_assimilator",
+          "civic_machine_servitor"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0.7,
+          "OR": {
+            "has_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ]
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 1.5,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_colonization_4": {
+    "cost": "@tier3cost3",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_3"
+    ],
+    "weight": "@tier3weight3",
+    "modifier": {
+      "pop_environment_tolerance": 0.05
+    },
+    "potential": {
+      "OR": {
+        "is_machine_empire": false,
+        "has_civic": [
+          "civic_machine_assimilator",
+          "civic_machine_servitor"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0.7,
+          "OR": {
+            "has_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ]
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 1.5,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_colonization_5": {
+    "cost": "@tier4cost3",
+    "area": "society",
+    "tier": 4,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_4"
+    ],
+    "weight": "@tier4weight3",
+    "modifier": {
+      "pop_environment_tolerance": 0.05
+    },
+    "potential": {
+      "OR": {
+        "is_machine_empire": false,
+        "has_civic": [
+          "civic_machine_assimilator",
+          "civic_machine_servitor"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0.7,
+          "OR": {
+            "has_civic": [
+              "civic_machine_servitor",
+              "civic_machine_assimilator"
+            ]
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 1.5,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_tomb_world_adaption": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_3"
+    ],
+    "weight": "@tier3weight1",
+    "is_rare": true,
+    "modifier": {
+      "pc_nuked_habitability": 0.2
+    },
+    "potential": {
+      "OR": {
+        "is_machine_empire": false,
+        "has_civic": [
+          "civic_machine_assimilator",
+          "civic_machine_servitor"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0.2,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_new_worlds"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 2,
+          "any_owned_planet": {
+            "is_planet_class": "pc_nuked"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_frontier_health": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_genome_mapping",
+      "tech_colonization_1"
+    ],
+    "weight": "@tier1weight2",
+    "potential": {
+      "is_gestalt": false
+    },
+    "weight_modifier": {
+      "factor": 2,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_harmony_adopt"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "tech_frontier_hospital": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_frontier_health",
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier2weight3",
+    "potential": {
+      "is_gestalt": false
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 10,
+          "OR": {
+            "has_technology": [
+              "tech_mine_exotic_gases",
+              "tech_exotic_gases"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_harmony_adopt"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "tech_mountain_range": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier2weight2",
+    "weight_groups": [
+      "deposit_blockers"
+    ],
+    "mod_weight_if_group_picked": {
+      "deposit_blockers": 0.5
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 4,
+          "has_ascension_perk": "ap_mastery_of_nature"
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_mountain_range"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 3
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_mountain_range"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    }
+  },
+  "tech_volcano": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier2weight2",
+    "weight_groups": [
+      "deposit_blockers"
+    ],
+    "mod_weight_if_group_picked": {
+      "deposit_blockers": 0.5
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 4,
+          "has_ascension_perk": "ap_mastery_of_nature"
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_active_volcano"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 3
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_active_volcano"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    }
+  },
+  "tech_dangerous_wildlife": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier2weight2",
+    "weight_groups": [
+      "deposit_blockers"
+    ],
+    "mod_weight_if_group_picked": {
+      "deposit_blockers": 0.5
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 4,
+          "has_ascension_perk": "ap_mastery_of_nature"
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_dangerous_wildlife_blocker"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 3
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_dangerous_wildlife_blocker"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    }
+  },
+  "tech_dense_jungle": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier1weight2",
+    "weight_groups": [
+      "deposit_blockers"
+    ],
+    "mod_weight_if_group_picked": {
+      "deposit_blockers": 0.5
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 4,
+          "has_ascension_perk": "ap_mastery_of_nature"
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_dense_jungle"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 3
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_dense_jungle"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    }
+  },
+  "tech_quicksand_basin": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier1weight2",
+    "weight_groups": [
+      "deposit_blockers"
+    ],
+    "mod_weight_if_group_picked": {
+      "deposit_blockers": 0.5
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 4,
+          "has_ascension_perk": "ap_mastery_of_nature"
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_quicksand_basin"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 3
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_quicksand_basin"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    }
+  },
+  "tech_noxious_swamp": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier1weight2",
+    "weight_groups": [
+      "deposit_blockers"
+    ],
+    "mod_weight_if_group_picked": {
+      "deposit_blockers": 0.5
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 4,
+          "has_ascension_perk": "ap_mastery_of_nature"
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_noxious_swamp"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 3
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_noxious_swamp"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    }
+  },
+  "tech_massive_glacier": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier1weight2",
+    "weight_groups": [
+      "deposit_blockers"
+    ],
+    "mod_weight_if_group_picked": {
+      "deposit_blockers": 0.5
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 4,
+          "has_ascension_perk": "ap_mastery_of_nature"
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_massive_glacier"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 3
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_massive_glacier"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    }
+  },
+  "tech_toxic_kelp": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier1weight2",
+    "weight_groups": [
+      "deposit_blockers"
+    ],
+    "mod_weight_if_group_picked": {
+      "deposit_blockers": 0.5
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 4,
+          "has_ascension_perk": "ap_mastery_of_nature"
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_toxic_kelp"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 3
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_toxic_kelp"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    }
+  },
+  "tech_deep_sinkhole": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier1weight2",
+    "weight_groups": [
+      "deposit_blockers"
+    ],
+    "mod_weight_if_group_picked": {
+      "deposit_blockers": 0.5
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 4,
+          "has_ascension_perk": "ap_mastery_of_nature"
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_deep_sinkhole"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 3
+        },
+        {
+          "factor": 0,
+          "NOT": {
+            "any_owned_planet": {
+              "has_deposit": "d_deep_sinkhole"
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    }
+  },
+  "tech_terrestrial_sculpting": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonization_1"
+    ],
+    "weight": "@tier2weight3",
+    "feature_flags": [
+      "build_terraform_station"
+    ],
+    "weight_modifier": {
+      "factor": 1.5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_ecological_adaptation": {
+    "cost": "@tier3cost2",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_terrestrial_sculpting"
+    ],
+    "weight": "@tier3weight2",
+    "feature_flags": [
+      "terraform_inhabited"
+    ],
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_climate_restoration": {
+    "cost": "@tier4cost1",
+    "area": "society",
+    "tier": 4,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_terrestrial_sculpting"
+    ],
+    "weight": "@tier4weight1",
+    "prereqfor_desc": {
+      "diplo_action": {
+        "title": "TECH_UNLOCK_TERRAFORMING_NUKED_CHANGE_TITLE",
+        "desc": "TECH_UNLOCK_TERRAFORMING_NUKED_CHANGE_DESC"
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_expansion_adopt"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_genome_mapping": {
+    "cost": "@tier1cost1",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "biology"
+    ],
+    "weight": "@tier1weight1",
+    "gateway": "biological",
+    "modifier": {
+      "pop_growth_speed": 0.1
+    },
+    "potential": {
+      "OR": {
+        "NOT": {
+          "has_authority": "auth_machine_intelligence"
+        },
+        "has_civic": [
+          "civic_machine_assimilator",
+          "civic_machine_servitor"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "factor": 1.5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_authority": "auth_hive_mind"
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_supremacy_adopt"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_vitality_boosters": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_genome_mapping"
+    ],
+    "weight": "@tier2weight2",
+    "modifier": {
+      "leader_age": 10
+    },
+    "potential": {
+      "OR": {
+        "NOT": {
+          "has_authority": "auth_machine_intelligence"
+        },
+        "has_civic": "civic_machine_assimilator"
+      }
+    },
+    "weight_modifier": {
+      "factor": 1.5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_authority": "auth_hive_mind"
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_supremacy_adopt"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_epigenetic_triggers": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_genome_mapping"
+    ],
+    "weight": "@tier2weight2",
+    "feature_flags": [
+      "uplifting"
+    ],
+    "potential": {
+      "OR": {
+        "NOT": {
+          "has_authority": "auth_machine_intelligence"
+        },
+        "has_civic": [
+          "civic_machine_assimilator",
+          "civic_machine_servitor"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0.5,
+          "has_ethic": "ethic_fanatic_xenophobe"
+        },
+        {
+          "factor": 0.75,
+          "has_ethic": "ethic_xenophobe"
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_xenophile"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_xenophile"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        },
+        {
+          "factor": 0,
+          "NOR": {
+            "has_country_flag": "found_presapients",
+            "any_planet_within_border": {
+              "any_pop": {
+                "is_sapient": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 0.5,
+          "has_ethic": "ethic_fanatic_xenophobe"
+        },
+        {
+          "factor": 0.75,
+          "has_ethic": "ethic_xenophobe"
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_xenophile"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_xenophile"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "tech_cloning": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_genome_mapping"
+    ],
+    "weight": "@tier2weight2",
+    "modifier": {
+      "pop_growth_speed": 0.1
+    },
+    "potential": {
+      "OR": {
+        "NOT": {
+          "has_authority": "auth_machine_intelligence"
+        },
+        "has_civic": "civic_machine_assimilator"
+      }
+    },
+    "weight_modifier": {
+      "factor": 1.5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_authority": "auth_hive_mind"
+        },
+        {
+          "factor": 1.25,
+          "has_tradition": "tr_supremacy_adopt"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_gene_banks": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "biology"
+    ],
+    "is_rare": true,
+    "prerequisites": [
+      "tech_cloning"
+    ],
+    "weight": "@tier2weight3",
+    "potential": {
+      "OR": {
+        "NOT": {
+          "has_authority": "auth_machine_intelligence"
+        },
+        "has_civic": "civic_machine_assimilator"
+      }
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_authority": "auth_hive_mind"
+        },
+        {
+          "factor": 0.2,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_biology"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_spark_of_genius"
+          }
+        },
+        {
+          "factor": 1.5,
+          "research_leader": {
+            "area": "society",
+            "has_level": {
+              "_operator": ">",
+              "value": 4
+            }
+          }
+        },
+        {
+          "factor": 0.75,
+          "research_leader": {
+            "area": "society",
+            "has_level": {
+              "_operator": "<",
+              "value": 2
+            }
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 3,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_gene_seed_purification": {
+    "cost": "@tier4cost1",
+    "area": "society",
+    "category": [
+      "biology"
+    ],
+    "tier": 4,
+    "is_rare": true,
+    "prerequisites": [
+      "tech_gene_tailoring"
+    ],
+    "weight": "@tier4weight1",
+    "potential": {
+      "NOT": {
+        "has_authority": "auth_machine_intelligence"
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0,
+          "host_has_dlc": "Utopia"
+        },
+        {
+          "factor": 1.25,
+          "has_authority": "auth_hive_mind"
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 0.1,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_biology"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_spark_of_genius"
+          }
+        },
+        {
+          "factor": 1.5,
+          "research_leader": {
+            "area": "society",
+            "has_level": {
+              "_operator": ">",
+              "value": 4
+            }
+          }
+        },
+        {
+          "factor": 0.75,
+          "NOT": {
+            "research_leader": {
+              "area": "society",
+              "has_level": {
+                "_operator": ">",
+                "value": 3
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "tech_morphogenetic_field_mastery": {
+    "cost": "@tier4cost1",
+    "area": "society",
+    "category": [
+      "biology"
+    ],
+    "tier": 4,
+    "is_rare": true,
+    "prerequisites": [
+      "tech_epigenetic_triggers"
+    ],
+    "weight": "@tier4weight1",
+    "potential": {
+      "NOT": {
+        "has_authority": "auth_machine_intelligence"
+      }
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0,
+          "has_authority": "auth_machine_intelligence"
+        },
+        {
+          "factor": 1.25,
+          "has_authority": "auth_hive_mind"
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 0.2,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_biology"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_maniacal"
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_spark_of_genius"
+          }
+        },
+        {
+          "factor": 1.5,
+          "research_leader": {
+            "area": "society",
+            "has_level": {
+              "_operator": ">",
+              "value": 4
+            }
+          }
+        },
+        {
+          "factor": 0.75,
+          "NOT": {
+            "research_leader": {
+              "area": "society",
+              "has_level": {
+                "_operator": ">",
+                "value": 2
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "@tech_gene_tailoring_POINTS": 1,
+  "tech_gene_tailoring": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_genome_mapping"
+    ],
+    "weight": "@tier3weight1",
+    "gateway": "biological",
+    "modifier": {
+      "description": "tech_gene_tailoring_modifier_desc",
+      "description_parameters": {
+        "POINTS": "@tech_gene_tailoring_POINTS"
+      },
+      "BIOLOGICAL_species_trait_points_add": "@tech_gene_tailoring_POINTS"
+    },
+    "feature_flags": [
+      "modify_traits",
+      "pop_self_modification"
+    ],
+    "potential": {
+      "OR": {
+        "NOT": {
+          "has_authority": "auth_machine_intelligence"
+        },
+        "has_civic": [
+          "civic_machine_assimilator",
+          "civic_machine_servitor"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "factor": 2,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_authority": "auth_hive_mind"
+        },
+        {
+          "factor": 1.25,
+          "is_xenophile": true
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_glandular_acclimation": {
+    "cost": "@tier3cost3",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_gene_tailoring"
+    ],
+    "weight": "@tier3weight3",
+    "feature_flags": [
+      "habitability_gene_modding"
+    ],
+    "potential": {
+      "OR": {
+        "NOT": {
+          "has_authority": "auth_machine_intelligence"
+        },
+        "has_civic": [
+          "civic_machine_assimilator",
+          "civic_machine_servitor"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "factor": 1.5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_authority": "auth_hive_mind"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_genetic_resequencing": {
+    "cost": "@tier5cost1",
+    "area": "society",
+    "tier": 5,
+    "is_rare": true,
+    "category": [
+      "biology"
+    ],
+    "weight": 0,
+    "gateway": "biological",
+    "feature_flags": [
+      "advanced_gene_modding",
+      "add_advanced_traits"
+    ],
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "@tech_gene_expressions_POINTS": 1,
+  "tech_gene_expressions": {
+    "cost": "@tier3cost3",
+    "area": "society",
+    "category": [
+      "biology"
+    ],
+    "tier": 3,
+    "is_rare": true,
+    "prerequisites": [
+      "tech_gene_tailoring"
+    ],
+    "weight": "@tier3weight3",
+    "modifier": {
+      "description": "tech_gene_expressions_modifier_desc",
+      "description_parameters": {
+        "POINTS": "@tech_gene_expressions_POINTS"
+      },
+      "BIOLOGICAL_species_trait_points_add": "@tech_gene_expressions_POINTS"
+    },
+    "potential": {
+      "OR": {
+        "NOT": {
+          "has_authority": "auth_machine_intelligence"
+        },
+        "has_civic": [
+          "civic_machine_assimilator",
+          "civic_machine_servitor"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_authority": "auth_hive_mind"
+        },
+        {
+          "factor": 0.5,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_biology"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 1.5,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_spark_of_genius"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 3,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_selected_lineages": {
+    "cost": "@tier3cost2",
+    "area": "society",
+    "category": [
+      "biology"
+    ],
+    "tier": 3,
+    "is_rare": true,
+    "prerequisites": [
+      "tech_vitality_boosters"
+    ],
+    "weight": "@tier3weight2",
+    "potential": {
+      "NOT": {
+        "has_authority": "auth_machine_intelligence"
+      }
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0.5,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_biology"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 0.5,
+          "OR": {
+            "has_ethic": [
+              "ethic_egalitarian",
+              "ethic_fanatic_egalitarian"
+            ]
+          }
+        },
+        {
+          "factor": 1.1,
+          "has_ethic": "ethic_authoritarian"
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_fanatic_authoritarian"
+        },
+        {
+          "factor": 1.5,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_spark_of_genius"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_egalitarian"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "tech_capacity_boosters": {
+    "cost": "@tier4cost3",
+    "area": "society",
+    "category": [
+      "biology"
+    ],
+    "tier": 4,
+    "is_rare": true,
+    "prerequisites": [
+      "tech_selected_lineages"
+    ],
+    "weight": "@tier4weight3",
+    "potential": {
+      "NOT": {
+        "has_authority": "auth_machine_intelligence"
+      }
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0.2,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_biology"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 0.5,
+          "OR": {
+            "has_ethic": [
+              "ethic_egalitarian",
+              "ethic_fanatic_egalitarian"
+            ]
+          }
+        },
+        {
+          "factor": 1.1,
+          "has_ethic": "ethic_authoritarian"
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_fanatic_authoritarian"
+        },
+        {
+          "factor": 1.5,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_spark_of_genius"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 3,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_biology"
+        }
+      }
+    }
+  },
+  "tech_regenerative_hull_tissue": {
+    "area": "society",
+    "cost": "@tier3cost2",
+    "tier": 3,
+    "is_rare": true,
+    "category": [
+      "biology"
+    ],
+    "ai_update_type": "military",
+    "weight": "@tier3weight2",
+    "weight_modifier": {
+      "factor": 0
+    }
+  },
+  "tech_doctrine_fleet_size_1": {
+    "cost": "@tier2cost1",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "military_theory"
+    ],
+    "weight": "@tier2weight1",
+    "modifier": {
+      "country_command_limit_add": 20
+    },
+    "weight_modifier": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_doctrine_fleet_size_2": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_doctrine_fleet_size_1"
+    ],
+    "weight": "@tier2weight3",
+    "modifier": {
+      "country_command_limit_add": 20
+    },
+    "weight_modifier": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_doctrine_fleet_size_3": {
+    "cost": "@tier3cost2",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_doctrine_fleet_size_2"
+    ],
+    "weight": "@tier3weight2",
+    "modifier": {
+      "country_command_limit_add": 20
+    },
+    "weight_modifier": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_doctrine_fleet_size_4": {
+    "cost": "@tier4cost1",
+    "area": "society",
+    "tier": 4,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_doctrine_fleet_size_3"
+    ],
+    "weight": "@tier4weight1",
+    "modifier": {
+      "country_command_limit_add": 20
+    },
+    "weight_modifier": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_doctrine_fleet_size_5": {
+    "cost": "@tier4cost3",
+    "area": "society",
+    "tier": 4,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_doctrine_fleet_size_4"
+    ],
+    "weight": "@tier4weight3",
+    "modifier": {
+      "country_command_limit_add": 20
+    },
+    "weight_modifier": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_interstellar_fleet_traditions": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": {},
+    "weight": "@tier2weight2",
+    "weight_modifier": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_refit_standards": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_interstellar_fleet_traditions"
+    ],
+    "weight": "@tier3weight1",
+    "modifier": {
+      "country_ship_upgrade_cost_mult": -0.2,
+      "ships_upkeep_mult": -0.05
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_command_matrix": {
+    "cost": "@tier3cost3",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_refit_standards"
+    ],
+    "weight": "@tier3weight3",
+    "modifier": {
+      "ship_fire_rate_mult": 0.05
+    },
+    "weight_modifier": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_doctrine_navy_size_1": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": {},
+    "weight": "@tier2weight2",
+    "modifier": {
+      "country_naval_cap_add": 30
+    },
+    "weight_modifier": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_doctrine_navy_size_2": {
+    "cost": "@tier3cost2",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_doctrine_navy_size_1"
+    ],
+    "weight": "@tier3weight2",
+    "modifier": {
+      "country_naval_cap_add": 30
+    },
+    "weight_modifier": {
+      "factor": 10,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_doctrine_navy_size_3": {
+    "cost": "@tier4cost1",
+    "area": "society",
+    "tier": 4,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_doctrine_navy_size_2"
+    ],
+    "weight": "@tier4weight1",
+    "modifier": {
+      "country_naval_cap_add": 30
+    },
+    "weight_modifier": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_doctrine_navy_size_4": {
+    "cost": "@tier4cost3",
+    "area": "society",
+    "tier": 4,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_doctrine_navy_size_3"
+    ],
+    "weight": "@tier4weight3",
+    "modifier": {
+      "country_naval_cap_add": 30
+    },
+    "weight_modifier": {
+      "factor": 3,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_centralized_command": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "military_theory"
+    ],
+    "weight": "@tier2weight2",
+    "modifier": {
+      "country_occupation_armies_add": 2
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_combat_training": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_centralized_command"
+    ],
+    "weight": "@tier3weight1",
+    "modifier": {
+      "army_attack_damage_mult": 0.15,
+      "army_attack_morale_mult": 0.15
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_ground_defense_planning": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_planetary_defenses"
+    ],
+    "weight": "@tier1weight2",
+    "modifier": {
+      "army_defense_damage_mult": 0.33,
+      "show_only_custom_tooltip": false,
+      "custom_tooltip": "ADD_NAVAL_CAPACITY_FROM_SOLDIERS"
+    },
+    "weight_modifier": {
+      "factor": 2,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 2,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_global_defense_grid": {
+    "cost": "@tier2cost1",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "military_theory"
+    ],
+    "prerequisites": [
+      "tech_ground_defense_planning"
+    ],
+    "weight": "@tier2weight1",
+    "modifier": {
+      "army_defense_health_mult": 0.25
+    },
+    "weight_modifier": {
+      "factor": 2,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 2,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_psionic_theory": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "psionics"
+    ],
+    "is_rare": true,
+    "weight": "@tier3weight1",
+    "is_reverse_engineerable": false,
+    "gateway": "psionics",
+    "potential": {
+      "NOT": {
+        "has_ethic": "ethic_gestalt_consciousness"
+      }
+    },
+    "modifier": {
+      "country_unity_produces_mult": 0.05
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0.5,
+          "NOR": {
+            "has_ethic": [
+              "ethic_spiritualist",
+              "ethic_fanatic_spiritualist"
+            ]
+          }
+        },
+        {
+          "factor": 2,
+          "has_ethic": "ethic_fanatic_spiritualist"
+        },
+        {
+          "factor": 2,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_maniacal"
+          }
+        },
+        {
+          "factor": 8,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_psionics"
+          }
+        },
+        {
+          "factor": 2,
+          "any_owned_pop": {
+            "pop_has_trait": "trait_psionic"
+          }
+        },
+        {
+          "factor": 1.25,
+          "any_owned_pop": {
+            "pop_has_trait": "trait_latent_psionic"
+          },
+          "NOT": {
+            "any_owned_pop": {
+              "pop_has_trait": "trait_psionic"
+            }
+          }
+        },
+        {
+          "factor": 0,
+          "AND": {
+            "OR": {
+              "has_ethic": [
+                "ethic_materialist",
+                "ethic_fanatic_materialist"
+              ]
+            },
+            "NOR": {
+              "research_leader": {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_psionics"
+              },
+              "any_owned_pop": [
+                {
+                  "pop_has_trait": "trait_psionic"
+                },
+                {
+                  "pop_has_trait": "trait_latent_psionic"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 5,
+      "modifier": [
+        {
+          "factor": 1.5,
+          "OR": {
+            "has_ethic": [
+              "ethic_spiritualist",
+              "ethic_fanatic_spiritualist"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_psionics"
+          }
+        }
+      ]
+    }
+  },
+  "tech_telepathy": {
+    "cost": "@tier3cost3",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "psionics"
+    ],
+    "is_rare": true,
+    "prerequisites": [
+      "tech_psionic_theory"
+    ],
+    "weight": "@tier3weight3",
+    "is_reverse_engineerable": false,
+    "potential": {
+      "NOT": {
+        "has_ethic": "ethic_gestalt_consciousness"
+      }
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0,
+          "host_has_dlc": "Utopia"
+        },
+        {
+          "factor": 0.5,
+          "NOT": {
+            "research_leader": {
+              "area": "society",
+              "has_trait": "leader_trait_expertise_psionics"
+            }
+          }
+        },
+        {
+          "factor": 1.1,
+          "research_leader": {
+            "area": "society",
+            "has_level": {
+              "_operator": ">",
+              "value": 2
+            },
+            "has_trait": "leader_trait_expertise_psionics"
+          }
+        },
+        {
+          "factor": 1.5,
+          "research_leader": {
+            "area": "society",
+            "has_level": {
+              "_operator": ">",
+              "value": 3
+            },
+            "has_trait": "leader_trait_expertise_psionics"
+          }
+        },
+        {
+          "factor": 2,
+          "research_leader": {
+            "area": "society",
+            "has_level": {
+              "_operator": ">",
+              "value": 4
+            },
+            "has_trait": "leader_trait_expertise_psionics"
+          }
+        },
+        {
+          "factor": 2,
+          "has_ethic": "ethic_spiritualist"
+        },
+        {
+          "factor": 3,
+          "has_ethic": "ethic_fanatic_spiritualist"
+        },
+        {
+          "factor": 4,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_maniacal"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 5,
+      "modifier": [
+        {
+          "factor": 1.5,
+          "OR": {
+            "has_ethic": [
+              "ethic_spiritualist",
+              "ethic_fanatic_spiritualist"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_psionics"
+          }
+        }
+      ]
+    }
+  },
+  "tech_precognition_interface": {
+    "cost": "@tier4cost2",
+    "area": "society",
+    "tier": 4,
+    "category": [
+      "psionics"
+    ],
+    "is_rare": true,
+    "prerequisites": [
+      "tech_telepathy"
+    ],
+    "weight": "@tier4weight2",
+    "is_reverse_engineerable": false,
+    "prereqfor_desc": {
+      "hide_prereq_for_desc": "component",
+      "custom": {
+        "title": "TECH_UNLOCK_COMBAT_COMPUTER_PRECOG_TITLE",
+        "desc": "TECH_UNLOCK_COMBAT_COMPUTER_PRECOG_DESC"
+      }
+    },
+    "potential": {
+      "NOT": {
+        "has_ethic": "ethic_gestalt_consciousness"
+      }
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0,
+          "host_has_dlc": "Utopia"
+        },
+        {
+          "factor": 0.5,
+          "NOT": {
+            "research_leader": {
+              "area": "society",
+              "has_trait": "leader_trait_expertise_psionics"
+            }
+          }
+        },
+        {
+          "factor": 1.1,
+          "research_leader": {
+            "area": "society",
+            "has_level": {
+              "_operator": ">",
+              "value": 2
+            },
+            "has_trait": "leader_trait_expertise_psionics"
+          }
+        },
+        {
+          "factor": 1.5,
+          "research_leader": {
+            "area": "society",
+            "has_level": {
+              "_operator": ">",
+              "value": 3
+            },
+            "has_trait": "leader_trait_expertise_psionics"
+          }
+        },
+        {
+          "factor": 2,
+          "research_leader": {
+            "area": "society",
+            "has_level": {
+              "_operator": ">",
+              "value": 4
+            },
+            "has_trait": "leader_trait_expertise_psionics"
+          }
+        },
+        {
+          "factor": 2,
+          "has_ethic": "ethic_spiritualist"
+        },
+        {
+          "factor": 3,
+          "has_ethic": "ethic_fanatic_spiritualist"
+        },
+        {
+          "factor": 4,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_maniacal"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_psionics"
+          }
+        }
+      ]
+    }
+  },
+  "tech_psi_jump_drive_1": {
+    "cost": "@tier5cost2",
+    "area": "society",
+    "tier": 5,
+    "category": [
+      "psionics"
+    ],
+    "ai_update_type": "all",
+    "is_rare": true,
+    "is_dangerous": [
+      true,
+      true
+    ],
+    "prerequisites": [
+      "tech_precognition_interface"
+    ],
+    "weight": "@tier5weight2",
+    "is_reverse_engineerable": false,
+    "feature_flags": [
+      "jump_method"
+    ],
+    "prereqfor_desc": {
+      "component": {
+        "title": "TECH_UNLOCK_PSI_JUMPDRIVE_1_TITLE",
+        "desc": "TECH_UNLOCK_PSI_JUMPDRIVE_1_DESC"
+      }
+    },
+    "potential": {
+      "NOT": {
+        "has_ethic": "ethic_gestalt_consciousness"
+      }
+    },
+    "weight_modifier": {
+      "factor": 0.1,
+      "modifier": [
+        {
+          "factor": 0,
+          "host_has_dlc": "Utopia"
+        },
+        {
+          "factor": 0.1,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_psionics"
+              },
+              {
+                "area": "physics",
+                "has_trait": "leader_trait_curator"
+              },
+              {
+                "area": "physics",
+                "has_trait": "leader_trait_spark_of_genius"
+              },
+              {
+                "area": "physics",
+                "has_trait": "leader_trait_maniacal"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "tech_galactic_ambitions": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "category": [
+      "new_worlds"
+    ],
+    "tier": 2,
+    "weight": "@tier2weight2",
+    "modifier": {
+      "country_starbase_capacity_add": 2
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 2
+          }
+        },
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 3
+          }
+        },
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 4
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_communications": {
+            "_operator": "<",
+            "value": 1
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 2,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        }
+      ]
+    }
+  },
+  "tech_manifest_destiny": {
+    "cost": "@tier4cost2",
+    "area": "society",
+    "category": [
+      "new_worlds"
+    ],
+    "tier": 4,
+    "prerequisites": [
+      "tech_galactic_ambitions"
+    ],
+    "weight": "@tier4weight2",
+    "modifier": {
+      "country_starbase_capacity_add": 2
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 2
+          }
+        },
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 3
+          }
+        },
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 4
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        },
+        {
+          "factor": 0,
+          "num_communications": {
+            "_operator": "<",
+            "value": 1
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 2,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        }
+      ]
+    }
+  },
+  "tech_interstellar_campaigns": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "category": [
+      "military_theory"
+    ],
+    "tier": 2,
+    "weight": "@tier2weight3",
+    "prerequisites": [
+      "tech_galactic_ambitions"
+    ],
+    "modifier": {
+      "country_claim_influence_cost_mult": -0.1,
+      "country_war_exhaustion_mult": -0.1
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0,
+          "OR": {
+            "has_valid_civic": [
+              "civic_fanatic_purifiers",
+              "civic_hive_devouring_swarm",
+              "civic_machine_terminator"
+            ]
+          }
+        },
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 2
+          }
+        },
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 3
+          }
+        },
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 4
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        },
+        {
+          "factor": 0,
+          "num_communications": {
+            "_operator": "<",
+            "value": 1
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 2,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_galactic_campaigns": {
+    "cost": "@tier4cost1",
+    "area": "society",
+    "category": [
+      "military_theory"
+    ],
+    "tier": 4,
+    "weight": "@tier4weight1",
+    "prerequisites": [
+      "tech_interstellar_campaigns"
+    ],
+    "modifier": {
+      "country_claim_influence_cost_mult": -0.1,
+      "country_war_exhaustion_mult": -0.1
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0,
+          "OR": {
+            "has_valid_civic": [
+              "civic_fanatic_purifiers",
+              "civic_hive_devouring_swarm",
+              "civic_machine_terminator"
+            ]
+          }
+        },
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 2
+          }
+        },
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 3
+          }
+        },
+        {
+          "factor": 2,
+          "num_communications": {
+            "_operator": ">",
+            "value": 4
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        },
+        {
+          "factor": 0,
+          "num_communications": {
+            "_operator": "<",
+            "value": 1
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_militarist"
+        },
+        {
+          "factor": 2,
+          "has_ethic": "ethic_fanatic_militarist"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_military_theory"
+          }
+        }
+      ]
+    }
+  },
+  "tech_planetary_government": {
+    "cost": 0,
+    "area": "society",
+    "tier": 0,
+    "category": [
+      "statecraft"
+    ],
+    "start_tech": true
+  },
+  "tech_planetary_unification": {
+    "cost": "@tier1cost1",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_planetary_government"
+    ],
+    "weight": "@tier1weight1",
+    "gateway": "capital",
+    "feature_flags": [
+      "campaign_edicts"
+    ],
+    "modifier": {
+      "country_base_unity_produces_add": 2
+    },
+    "weight_modifier": {
+      "factor": 4,
+      "modifier": {
+        "factor": 0.75,
+        "NOT": {
+          "OR": {
+            "has_ethic": [
+              "ethic_pacifist",
+              "ethic_fanatic_pacifist"
+            ]
+          }
+        }
+      }
+    },
+    "ai_weight": {
+      "factor": 2,
+      "modifier": [
+        {
+          "factor": 0.75,
+          "NOT": {
+            "OR": {
+              "has_ethic": [
+                "ethic_pacifist",
+                "ethic_fanatic_pacifist"
+              ]
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "has_ethic": "ethic_authoritarian"
+        },
+        {
+          "factor": 1.5,
+          "has_ethic": "ethic_fanatic_authoritarian"
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    }
+  },
+  "tech_colonial_centralization": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_planetary_unification"
+    ],
+    "weight": "@tier2weight2",
+    "gateway": "capital",
+    "weight_modifier": {
+      "factor": 4,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_galactic_administration": {
+    "cost": "@tier3cost3",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier3weight3",
+    "gateway": "capital",
+    "modifier": {
+      "country_government_civic_points_add": 1
+    },
+    "weight_modifier": {
+      "factor": 4,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "factor": 10,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_subdermal_stimulation": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "biology"
+    ],
+    "prerequisites": [
+      "tech_genome_mapping"
+    ],
+    "weight": "@tier2weight2",
+    "is_rare": true,
+    "feature_flags": [
+      "bliss_standard"
+    ],
+    "potential": {
+      "NOT": {
+        "has_ethic": "ethic_gestalt_consciousness"
+      }
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 1.25,
+          "NOR": {
+            "has_ethic": [
+              "ethic_egalitarian",
+              "ethic_fanatic_egalitarian"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 3,
+          "NOR": {
+            "has_ethic": [
+              "ethic_egalitarian",
+              "ethic_fanatic_egalitarian"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_biology"
+          }
+        }
+      ]
+    }
+  },
+  "tech_global_production_strategy": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_alloys_1",
+      "tech_luxuries_1",
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier3weight1",
+    "weight_modifier": {
+      "factor": 1.5,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "factor": 1.5,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_adaptive_bureaucracy": {
+    "cost": "@tier1cost2",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_planetary_unification"
+    ],
+    "weight": "@tier1weight2",
+    "modifier": {
+      "country_leader_pool_size": 1,
+      "leaders_cost_mult": -0.2
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0.5,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 2
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 3
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 4
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_colonial_bureaucracy": {
+    "cost": "@tier2cost1",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_adaptive_bureaucracy"
+    ],
+    "weight": "@tier2weight1",
+    "modifier": {
+      "country_admin_cap_add": 20
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 2
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 3
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 4
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_galactic_bureaucracy": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "new_worlds"
+    ],
+    "prerequisites": [
+      "tech_colonial_bureaucracy"
+    ],
+    "weight": "@tier3weight1",
+    "modifier": {
+      "country_admin_cap_add": 20
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 2
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 3
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 4
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_new_worlds"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_new_worlds"
+        }
+      }
+    }
+  },
+  "tech_living_state": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier2weight3",
+    "potential": {
+      "NOT": {
+        "has_ethic": "ethic_gestalt_consciousness"
+      }
+    },
+    "modifier": {
+      "pop_factions_produces_add": 1
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0.5,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 5
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 5
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 6
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 7
+          }
+        },
+        {
+          "factor": 1.25,
+          "OR": {
+            "has_ethic": [
+              "ethic_authoritarian",
+              "ethic_fanatic_authoritarian"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "weight": 3,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_collective_self": {
+    "cost": "@tier3cost3",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier3weight3",
+    "modifier": {
+      "leader_skill_levels": 1,
+      "leaders_upkeep_mult": -0.1
+    },
+    "potential": {
+      "NOT": {
+        "has_ethic": "ethic_gestalt_consciousness"
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0.5,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 7
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 8
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 9
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 10
+          }
+        },
+        {
+          "factor": 1.5,
+          "OR": {
+            "has_ethic": [
+              "ethic_authoritarian",
+              "ethic_fanatic_authoritarian"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_autonomous_agents": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier2weight3",
+    "potential": {
+      "has_ethic": "ethic_gestalt_consciousness"
+    },
+    "modifier": {
+      "country_base_influence_produces_add": 1
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0.5,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 5
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 5
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 6
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 7
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "weight": 3,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_embodied_dynamism": {
+    "cost": "@tier3cost3",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_autonomous_agents"
+    ],
+    "weight": "@tier3weight3",
+    "modifier": {
+      "leader_skill_levels": 1,
+      "leaders_upkeep_mult": -0.1
+    },
+    "potential": {
+      "has_ethic": "ethic_gestalt_consciousness"
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 0.5,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 7
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 8
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 9
+          }
+        },
+        {
+          "factor": 1.5,
+          "num_owned_planets": {
+            "_operator": ">",
+            "value": 10
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_neural_implants": {
+    "cost": "@tier1cost3",
+    "area": "society",
+    "tier": 1,
+    "category": [
+      "statecraft"
+    ],
+    "weight": "@tier1weight3",
+    "potential": {
+      "NOT": {
+        "has_ethic": "ethic_gestalt_consciousness"
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 1.5,
+          "count_owned_pops": {
+            "limit": {
+              "is_enslaved": true
+            },
+            "count": {
+              "_operator": ">",
+              "value": 9
+            }
+          }
+        },
+        {
+          "factor": 2,
+          "count_owned_pops": {
+            "limit": {
+              "is_enslaved": true
+            },
+            "count": {
+              "_operator": ">",
+              "value": 19
+            }
+          }
+        },
+        {
+          "factor": 2,
+          "count_owned_pops": {
+            "limit": {
+              "is_enslaved": true
+            },
+            "count": {
+              "_operator": ">",
+              "value": 29
+            }
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        },
+        {
+          "factor": 0,
+          "OR": {
+            "allows_slavery": false,
+            "NOT": {
+              "any_owned_pop": {
+                "is_enslaved": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": [
+        {
+          "factor": 1.25,
+          "OR": {
+            "has_ethic": [
+              "ethic_authoritarian",
+              "ethic_fanatic_authoritarian"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    }
+  },
+  "tech_artificial_moral_codes": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "statecraft"
+    ],
+    "weight": "@tier2weight3",
+    "modifier": {
+      "planet_crime_mult": -0.15,
+      "planet_amenities_mult": 0.05
+    },
+    "potential": {
+      "NOT": {
+        "has_ethic": "ethic_gestalt_consciousness"
+      }
+    },
+    "weight_modifier": {
+      "factor": 1.5,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_synthetic_thought_patterns": {
+    "cost": "@tier3cost3",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_artificial_moral_codes"
+    ],
+    "weight": "@tier3weight3",
+    "modifier": {
+      "planet_jobs_produces_mult": 0.05
+    },
+    "potential": {
+      "is_gestalt": false
+    },
+    "weight_modifier": {
+      "factor": 1.5,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_unity_of_purpose": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "statecraft"
+    ],
+    "weight": "@tier2weight3",
+    "modifier": {
+      "planet_crime_no_happiness_mult": -0.15,
+      "planet_amenities_no_happiness_mult": 0.05
+    },
+    "potential": {
+      "is_gestalt": true
+    },
+    "weight_modifier": {
+      "factor": 1.5,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_collective_production_methods": {
+    "cost": "@tier3cost3",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_unity_of_purpose"
+    ],
+    "weight": "@tier3weight1",
+    "modifier": {
+      "planet_jobs_produces_mult": 0.05
+    },
+    "potential": {
+      "has_authority": "auth_hive_mind"
+    },
+    "weight_modifier": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "weight": 2,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_resource_processing_algorithms": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_unity_of_purpose"
+    ],
+    "weight": "@tier3weight1",
+    "modifier": {
+      "planet_jobs_produces_mult": 0.05
+    },
+    "potential": {
+      "has_authority": "auth_machine_intelligence"
+    },
+    "weight_modifier": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "weight": 2,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_holo_entertainment": {
+    "cost": 0,
+    "area": "society",
+    "start_tech": true,
+    "category": [
+      "statecraft"
+    ],
+    "tier": 0,
+    "potential": {
+      "is_gestalt": false
+    }
+  },
+  "tech_hyper_entertainment_forum": {
+    "cost": "@tier1cost3",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 1,
+    "prerequisites": [
+      "tech_holo_entertainment"
+    ],
+    "weight": "@tier1weight3",
+    "potential": {
+      "is_gestalt": false
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 10,
+          "OR": {
+            "has_technology": [
+              "tech_mine_exotic_gases",
+              "tech_exotic_gases"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_paradise_dome": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 3,
+    "prerequisites": [
+      "tech_housing_1"
+    ],
+    "weight": "@tier3weight1",
+    "potential": {
+      "OR": {
+        "is_gestalt": false,
+        "has_valid_civic": "civic_machine_servitor"
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 10,
+          "OR": {
+            "has_technology": [
+              "tech_mine_rare_crystals",
+              "tech_rare_crystals"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_cultural_heritage": {
+    "cost": 0,
+    "area": "society",
+    "start_tech": true,
+    "category": [
+      "statecraft"
+    ],
+    "tier": 0,
+    "potential": {
+      "is_hive_empire": false
+    },
+    "weight_modifier": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_heritage_site": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 2,
+    "prerequisites": [
+      "tech_cultural_heritage"
+    ],
+    "weight": "@tier2weight2",
+    "potential": {
+      "NOR": {
+        "has_ethic": [
+          "ethic_spiritualist",
+          "ethic_fanatic_spiritualist"
+        ],
+        "has_valid_civic": "civic_machine_servitor"
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 10,
+          "OR": {
+            "has_technology": [
+              "tech_mine_volatile_motes",
+              "tech_volatile_motes"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_hypercomms_forum": {
+    "cost": "@tier3cost2",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 3,
+    "prerequisites": [
+      "tech_heritage_site",
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier3weight2",
+    "potential": {
+      "NOR": {
+        "has_ethic": [
+          "ethic_spiritualist",
+          "ethic_fanatic_spiritualist"
+        ],
+        "has_valid_civic": "civic_machine_servitor"
+      }
+    },
+    "weight_modifier": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_autocurating_vault": {
+    "cost": "@tier4cost2",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 4,
+    "prerequisites": [
+      "tech_hypercomms_forum",
+      "tech_administrative_ai",
+      "tech_galactic_administration"
+    ],
+    "weight": "@tier4weight2",
+    "potential": {
+      "NOR": {
+        "has_ethic": [
+          "ethic_spiritualist",
+          "ethic_fanatic_spiritualist"
+        ],
+        "has_valid_civic": "civic_machine_servitor"
+      }
+    },
+    "weight_modifier": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_holographic_rituals": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 2,
+    "prerequisites": [
+      "tech_cultural_heritage"
+    ],
+    "weight": "@tier2weight2",
+    "potential": {
+      "OR": {
+        "has_ethic": [
+          "ethic_spiritualist",
+          "ethic_fanatic_spiritualist"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "modifier": [
+        {
+          "factor": 10,
+          "OR": {
+            "has_technology": [
+              "tech_mine_rare_crystals",
+              "tech_rare_crystals"
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_consecration_fields": {
+    "cost": "@tier3cost2",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 3,
+    "prerequisites": [
+      "tech_holographic_rituals",
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier3weight2",
+    "potential": {
+      "OR": {
+        "has_ethic": [
+          "ethic_spiritualist",
+          "ethic_fanatic_spiritualist"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_transcendent_faith": {
+    "cost": "@tier4cost2",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 4,
+    "prerequisites": [
+      "tech_consecration_fields",
+      "tech_galactic_administration"
+    ],
+    "weight": "@tier4weight2",
+    "potential": {
+      "OR": {
+        "has_ethic": [
+          "ethic_spiritualist",
+          "ethic_fanatic_spiritualist"
+        ]
+      }
+    },
+    "weight_modifier": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_hive_node": {
+    "cost": 0,
+    "area": "society",
+    "start_tech": true,
+    "category": [
+      "statecraft"
+    ],
+    "tier": 0,
+    "potential": {
+      "is_hive_empire": true
+    },
+    "weight_modifier": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_hive_cluster": {
+    "cost": "@tier2cost2",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 2,
+    "prerequisites": [
+      "tech_hive_node"
+    ],
+    "weight": "@tier2weight2",
+    "weight_modifier": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_hive_confluence": {
+    "cost": "@tier3cost2",
+    "area": "society",
+    "category": [
+      "statecraft"
+    ],
+    "tier": 3,
+    "prerequisites": [
+      "tech_hive_cluster",
+      "tech_colonial_centralization"
+    ],
+    "weight": "@tier3weight2",
+    "weight_modifier": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_ascension_theory": {
+    "area": "society",
+    "cost": "@tier5cost2",
+    "tier": 5,
+    "category": [
+      "statecraft"
+    ],
+    "ai_update_type": "all",
+    "is_rare": true,
+    "weight": "@tier5weight2",
+    "modifier": {
+      "ascension_perks_add": 1
+    },
+    "feature_flags": [
+      "unity_ambitions"
+    ],
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": {
+        "factor": 0.2,
+        "NOR": {
+          "has_modifier": "curator_insight",
+          "research_leader": [
+            {
+              "area": "physics",
+              "has_trait": "leader_trait_curator"
+            },
+            {
+              "area": "physics",
+              "has_trait": "leader_trait_expertise_computing"
+            }
+          ]
+        }
+      }
+    },
+    "ai_weight": {
+      "weight": 9999
+    }
+  },
+  "tech_psionic_barrier": {
+    "area": "society",
+    "cost": "@tier3cost1",
+    "tier": 3,
+    "category": [
+      "psionics"
+    ],
+    "ai_update_type": "all",
+    "is_rare": true,
+    "prerequisites": [
+      "tech_psionic_theory"
+    ],
+    "weight": 0,
+    "is_reverse_engineerable": false,
+    "icon": "tech_psionic_barrier",
+    "weight_modifier": {
+      "factor": 0
+    }
+  },
+  "tech_psionic_shield": {
+    "area": "society",
+    "cost": "@tier5cost3",
+    "tier": 5,
+    "category": [
+      "psionics"
+    ],
+    "ai_update_type": "all",
+    "is_rare": true,
+    "prerequisites": [
+      "tech_psionic_theory"
+    ],
+    "weight": 0,
+    "is_reverse_engineerable": false,
+    "weight_modifier": {
+      "factor": 0
+    }
+  },
+  "tech_penal_colonies": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_artificial_moral_codes"
+    ],
+    "weight": "@tier3weight1",
+    "is_rare": true,
+    "potential": {
+      "is_gestalt": false
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0.25,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_statecraft"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_resort_colonies": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_artificial_moral_codes"
+    ],
+    "weight": "@tier3weight1",
+    "is_rare": true,
+    "potential": {
+      "is_gestalt": false
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0.25,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_statecraft"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_slave_colonies": {
+    "cost": "@tier2cost3",
+    "area": "society",
+    "tier": 2,
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": [
+      "tech_neural_implants"
+    ],
+    "weight": "@tier2weight3",
+    "potential": {
+      "is_gestalt": false
+    },
+    "weight_modifier": {
+      "factor": 0.5,
+      "modifier": [
+        {
+          "factor": 0.25,
+          "NOR": {
+            "research_leader": [
+              {
+                "area": "society",
+                "has_trait": "leader_trait_expertise_statecraft"
+              },
+              {
+                "area": "society",
+                "has_trait": "leader_trait_curator"
+              }
+            ]
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "society",
+            "has_trait": "leader_trait_expertise_statecraft"
+          }
+        },
+        {
+          "factor": 0,
+          "num_owned_planets": {
+            "_operator": "<",
+            "value": 2
+          }
+        },
+        {
+          "factor": 0,
+          "OR": {
+            "allows_slavery": false,
+            "NOT": {
+              "any_owned_pop": {
+                "is_enslaved": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "society",
+          "has_trait": "leader_trait_expertise_statecraft"
+        }
+      }
+    }
+  },
+  "tech_housing_agrarian_idyll": {
+    "cost": "@tier3cost1",
+    "area": "society",
+    "tier": 3,
+    "category": [
+      "statecraft"
+    ],
+    "weight": "@tier3weight1",
+    "modifier": {
+      "description": "district_housing_agrarian_idyll_tech_effect"
+    },
+    "weight_modifier": {
+      "factor": 1.5,
+      "modifier": [
+        {
+          "factor": 0,
+          "NOT": {
+            "has_valid_civic": "civic_agrarian_idyll"
+          }
+        },
+        {
+          "factor": 1.25,
+          "research_leader": {
+            "area": "engineering",
+            "has_trait": "leader_trait_expertise_industry"
+          }
+        }
+      ]
+    },
+    "ai_weight": {
+      "factor": 2,
+      "modifier": {
+        "factor": 1.25,
+        "research_leader": {
+          "area": "engineering",
+          "has_trait": "leader_trait_expertise_industry"
+        }
+      }
+    }
+  }
+}

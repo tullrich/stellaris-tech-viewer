@@ -1,0 +1,74 @@
+{
+  "tech_akx_worm_1": {
+    "area": "physics",
+    "start_tech": false,
+    "cost": "@horizontechcost1",
+    "is_rare": true,
+    "tier": "@horizontechtier",
+    "category": [
+      "field_manipulation"
+    ],
+    "prerequisites": {},
+    "weight": 60,
+    "ai_weight": {
+      "factor": 0
+    },
+    "weight_modifier": {
+      "modifier": {
+        "factor": 0,
+        "always": true
+      }
+    },
+    "prereqfor_desc": {
+      "custom": {
+        "title": "tech_akx_worm_partial_custom",
+        "desc": "tech_akx_worm_partial_custom_desc"
+      }
+    }
+  },
+  "tech_akx_worm_2": {
+    "area": "society",
+    "start_tech": false,
+    "cost": "@horizontechcost1",
+    "is_rare": true,
+    "tier": "@horizontechtier",
+    "category": [
+      "statecraft"
+    ],
+    "prerequisites": {},
+    "weight": 60,
+    "ai_weight": {
+      "factor": 0
+    },
+    "weight_modifier": {
+      "modifier": {
+        "factor": 0,
+        "always": true
+      }
+    },
+    "prereqfor_desc": {
+      "custom": {
+        "title": "tech_akx_worm_partial_custom",
+        "desc": "tech_akx_worm_partial_custom_desc"
+      }
+    }
+  },
+  "tech_akx_worm_3": {
+    "area": "physics",
+    "start_tech": false,
+    "cost": "@horizontechcost2",
+    "is_rare": true,
+    "tier": "@horizontechtier",
+    "category": [
+      "particles"
+    ],
+    "prerequisites": [
+      "tech_akx_worm_1",
+      "tech_akx_worm_2"
+    ],
+    "weight": 60,
+    "ai_weight": {
+      "factor": 0
+    }
+  }
+}
