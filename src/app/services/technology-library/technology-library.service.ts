@@ -23,7 +23,14 @@ export class TechnologyLibraryService {
       require('./data/00_soc_tech.json'),
       require('./data/00_soc_tech_repeatable.json'),
       require('./data/00_soc_weapon_tech.json'),
-      require('./data/00_synthetic_dawn_tech.json')
+      require('./data/00_apocalypse_tech.json'),
+      require('./data/00_distant_stars_tech.json'),
+      require('./data/00_fallen_empire_tech.json'),
+      require('./data/00_horizonsignal_tech.json'),
+      require('./data/00_leviathans_tech.json'),
+      require('./data/00_megacorp_tech.json'),
+      require('./data/00_strategic_resources_tech.json'),
+      require('./data/00_synthetic_dawn_tech.json'),
     );
 
     this.techs = _.chain(techData)
