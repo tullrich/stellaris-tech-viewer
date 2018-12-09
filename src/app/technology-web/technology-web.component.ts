@@ -35,15 +35,15 @@ export class TechnologyWebComponent implements OnInit {
       marginy: 30,
       rankdir: 'LR',
       ranksep: 50,
-      nodesep: 26,
-      edgesep: 8,
+      nodesep: 19,
+      edgesep: 0,
       compound: true,
     });
     this.g.setDefaultEdgeLabel(function() { return {}; });
 
     // Add nodes
     this.store.techs.forEach((t) => {
-      this.g.setNode(t.id, { tech: t, width: 225, height: 56 });
+      this.g.setNode(t.id, { tech: t, width: 168, height: 42 });
     })
 
     // Add edges

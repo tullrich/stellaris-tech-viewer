@@ -24,42 +24,43 @@ $node-shadow: 0px 0px 55px -12px;
     z-index: 1;
     .tech-node {
       position: absolute;
-      height: 56px;
-      width: 225px;
+      height: 42px;
+      width: 168px;
       border: 2px solid rgb(100,100,100);
       box-shadow: $node-shadow rgba(0,0,0,0.75);
       display: flex;
       background-color: white;
       .icon {
-        width: 56px;
+        width: 42px;
         display: flex;
         align-items: center;
         justify-content: center;
 
         img {
-          height: 39px;
-          width: 39px;
+          height: 29px;
+          width: 29px;
         }
       }
 
       .body {
-        width: 169px;
+        width: 126px;
         padding: 7px 7px 7px 0;
         vertical-align: top;
         display: flex;
         flex-direction: column;
 
         p {
-          font-size: 11px;
-          line-height: 11px;
+          font-size: 9px;
+          line-height: 10px;
           font-weight: bold;
-          margin-bottom: 3px;
+          margin-bottom: 0px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          flex-shrink: 0;
         }
         small {
-          font-size: 10px;
+          font-size: 8px;
           margin-bottom: auto;
         }
       }
