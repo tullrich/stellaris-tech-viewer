@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Technology } from '../models/technology.model';
 import { TechnologyLibraryService } from '../services/technology-library/technology-library.service';
 import * as dagre from "dagre";
 import * as _ from "lodash";
@@ -30,19 +31,19 @@ export class TechnologyWebComponent implements OnInit {
       directed: true
     });
     this.g.setGraph({
-      marginx: 50,
-      marginy: 50,
+      marginx: 30,
+      marginy: 30,
       rankdir: 'LR',
-      ranksep: 200,
-      nodesep: 35,
-      edgesep: 10,
+      ranksep: 50,
+      nodesep: 26,
+      edgesep: 8,
       compound: true,
     });
     this.g.setDefaultEdgeLabel(function() { return {}; });
 
     // Add nodes
     this.store.techs.forEach((t) => {
-      this.g.setNode(t.id, { tech: t, width: 300, height: 75 });
+      this.g.setNode(t.id, { tech: t, width: 225, height: 56 });
     })
 
     // Add edges
@@ -90,5 +91,19 @@ export class TechnologyWebComponent implements OnInit {
       let end = this.g.node(e.w);
       return `M ${start.x + start.width/2} ${start.y} L ${end.x - end.width/2} ${end.y}`;
     }
+  }
+
+  edgeColor(e: dagre.Edge) {
+    let end = this.g.node(e.w).tech;
+    switch(end.area) {
+      case 'engineering': return "#E29C4388";
+      case 'physics': return "#4396E288";
+      case 'society': return "#5ACA9C88";
+      default: return 'black';
+    }
+  }
+
+  tierString(t: Technology) {
+    return (t.tier == 0) ? "Starting Tech" : `Tier: ${t.tier}`;
   }
 }
