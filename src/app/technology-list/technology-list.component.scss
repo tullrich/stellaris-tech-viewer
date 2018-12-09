@@ -1,0 +1,26 @@
+$color_rare: #800080;
+$color_phys: #4396E2;
+$color_soc: #5ACA9C;
+$color_eng: #E29C43;
+
+.tech {
+  height: 400px;
+  width: 18rem;
+  border: 2px solid transparent;
+  border-radius: 0px;
+  .title {
+    &.rare {
+      color: $color_rare;
+    }
+  }
+
+  &.tech-eng {
+    border-color: $color_eng;
+  }
+  &.tech-phys {
+    border-color: $color_phys;
+  }
+  &.tech-soc {
+    border-color: $color_soc;
+  }
+}
