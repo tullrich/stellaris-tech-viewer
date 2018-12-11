@@ -21,9 +21,10 @@ $node-shadow: 0px 0px 55px -12px;
     justify-content: center;
     align-items: center;
     font-size: 40px;
+    color: gray;
 
     h5 {
-      color: gray;
+      color: black;
       font-size: 15px;
       text-transform: uppercase;
     }
@@ -111,6 +112,11 @@ $node-shadow: 0px 0px 55px -12px;
   //padding: 20px;
   border: 2px solid #3994af;
   background-color: whitesmoke;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 
   .tech-web-canvas {
     min-height: 100%;

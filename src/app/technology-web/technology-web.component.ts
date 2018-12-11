@@ -1,14 +1,10 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { Technology } from '../models/technology.model';
 import { TechnologyLibraryService } from '../services/technology-library/technology-library.service';
 import * as _ from "lodash";
 
 declare var ELK;
 declare var Worker;
-const elk = new ELK({
-  workerUrl: 'assets/script/elk-worker.min.js',
-  workerFactory: function(url: string) { return new Worker(url); }
-});
 
 const MINIMAP_DIMS = { x: 350.0, y: 350.0 };
 
@@ -17,8 +13,9 @@ const MINIMAP_DIMS = { x: 350.0, y: 350.0 };
   templateUrl: './technology-web.component.html',
   styleUrls: ['./technology-web.component.scss']
 })
-export class TechnologyWebComponent implements OnInit {
+export class TechnologyWebComponent implements OnInit, OnDestroy {
   @ViewChild('viewport') viewport: ElementRef;
+  elk: any;
   g: any;
   nodes: any[];
   edges: any[];
@@ -28,6 +25,11 @@ export class TechnologyWebComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.elk = new ELK({
+      workerUrl: 'assets/script/elk-worker.min.js',
+      workerFactory: function(url: string) { return new Worker(url); }
+    });
+
     let i = 0;
     const graph = {
       id: "root",
@@ -68,7 +70,7 @@ export class TechnologyWebComponent implements OnInit {
       })
     }
 
-    elk.layout(graph)
+    this.elk.layout(graph)
        .then((graph) => {
          console.log(graph);
          this.g = graph;
@@ -79,6 +81,10 @@ export class TechnologyWebComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+  }
+
+  ngOnDestroy() {
+    this.elk.terminateWorker();
   }
 
   layoutNode(n: any) {
