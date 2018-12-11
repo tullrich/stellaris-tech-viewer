@@ -1,20 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Technology } from '../models/technology.model';
 import { TechnologyLibraryService } from '../services/technology-library/technology-library.service';
-import * as dagre from "dagre";
 import * as _ from "lodash";
 
 declare var ELK;
-
 const elk = new ELK()
-
-const LOW_WEIGHT_TECHS = {
-  "tech_colonial_centralization": true,
-  "tech_galactic_administration": true,
-  "tech_food_processing_1": true,
-  "tech_gene_crops": true,
-  "tech_colonization_1": true
-};
 
 @Component({
   selector: 'app-technology-web',
@@ -31,40 +21,6 @@ export class TechnologyWebComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.g = new dagre.graphlib.Graph({
-    //   directed: true
-    // });
-    // this.g.setGraph({
-    //   marginx: 30,
-    //   marginy: 30,
-    //   rankdir: 'LR',
-    //   ranksep: 50,
-    //   nodesep: 19,
-    //   edgesep: 0,
-    //   compound: true,
-    // });
-    // this.g.setDefaultEdgeLabel(function() { return {}; });
-    //
-    // // Add nodes
-    // this.store.techs.forEach((t) => {
-    //   this.g.setNode(t.id, { tech: t, width: 168, height: 42 });
-    // })
-    //
-    // // Add edges
-    // this.store.techs.forEach((t) => {
-    //   if (t.prerequisites) {
-    //     t.prerequisites.forEach((preReq) => {
-    //       if (preReq.id && (LOW_WEIGHT_TECHS[preReq.id] === undefined)) {
-    //         this.g.setEdge(preReq.id, t.id, { weight: 1 });
-    //       }
-    //     });
-    //   }
-    // });
-    //
-    // dagre.layout(this.g);
-    //
-    // this.nodes = this.g.nodes().map((v) => this.g.node(v));
-    // this.edges = this.g.edges();
     let i = 0;
     const graph = {
       id: "root",
@@ -94,7 +50,7 @@ export class TechnologyWebComponent implements OnInit {
         if (t.prerequisites.length > 0) {
           //  return [{ id: `edge_`, sources: t.prerequisites.map((pr) => pr.id), targets: [t.id] }];
           return _.transform(t.prerequisites, (result, preReq) => {
-            if (preReq.id) {// && (LOW_WEIGHT_TECHS[preReq.id] === undefined)) {
+            if (preReq.id) {
               result.push({ id: `e${i++}`, sources: [preReq.id], targets: [t.id] });
             }
           }, []);
