@@ -14,12 +14,10 @@ function convert(in_path, out_path) {
   const input = fs.readFileSync(in_path, "utf8");
   const output = jomini.parse(input);
   fs.writeJsonSync(out_path, output, { spaces: 2 });
-  //console.dir(output);
 }
 
 program
   .version('1.0.0');
-
 
 program
   .command('convert <input_dir> <output_dir>')
@@ -60,3 +58,7 @@ program
   });
 
 program.parse(process.argv);
+
+ if (!process.argv.slice(2).length) {
+  program.outputHelp();
+}

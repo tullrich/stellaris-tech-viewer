@@ -48,7 +48,7 @@ export class TechnologyLibraryService {
           is_rare: val.is_rare,
           start_tech: val.start_tech,
           area: val.area,
-          prerequisites: val.prerequisites
+          prerequisites: val.prerequisites||[]
         }
       })
       .value();
