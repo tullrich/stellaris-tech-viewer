@@ -4,7 +4,11 @@ import { TechnologyLibraryService } from '../services/technology-library/technol
 import * as _ from "lodash";
 
 declare var ELK;
-const elk = new ELK()
+declare var Worker;
+const elk = new ELK({
+  workerUrl: 'assets/script/elk-worker.min.js',
+  workerFactory: function(url: string) { return new Worker(url); }
+});
 
 const MINIMAP_DIMS = { x: 350.0, y: 350.0 };
 

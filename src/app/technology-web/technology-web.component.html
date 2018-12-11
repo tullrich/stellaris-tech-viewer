@@ -1,6 +1,6 @@
 <div #viewport class="tech-web-scrollable" (scroll)="onScroll($event)">
-  <div class="tech-web-canvas">
-    <div class="edge-canvas" *ngIf="g">
+  <div class="tech-web-canvas" *ngIf="g; else loading">
+    <div class="edge-canvas" >
       <svg [attr.height.px]="g.height" [attr.width.px]="g.width">
         <defs>
           <marker id="arrow" markerWidth="12" markerHeight="12" refX="4.4" refY="6" orient="auto" markerUnits="strokeWidth">
@@ -11,7 +11,7 @@
           [attr.stroke]="edgeColor(e)" stroke-width="2" fill="none" marker-end="url(#arrow)" />
       </svg>
     </div>
-    <div class="tech-nodes" *ngIf="g">
+    <div class="tech-nodes">
       <div class="tech-node" *ngFor="let n of nodes" [ngStyle]="layoutNode(n)"
         [class.rare]="n.tech.is_rare" [ngClass]="store.getAreaClass(n.tech)">
         <div class="icon">
@@ -24,6 +24,12 @@
       </div>
     </div>
   </div>
+  <ng-template #loading>
+    <div class="loading">
+      <i class="fas fa-spinner fa-spin"></i>
+      <h5 class="mt-3">Building Web</h5>
+    </div>
+  </ng-template>
 </div>
 
 

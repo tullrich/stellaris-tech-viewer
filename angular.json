@@ -30,7 +30,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/elkjs/lib/elk.bundled.js",
+              "node_modules/elkjs/lib/elk-api.js",
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
