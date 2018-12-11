@@ -19,17 +19,52 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
   g: any;
   nodes: any[];
   edges: any[];
-  zoom = 1;
+  zoom = .6;
+  filters = new Set();
 
   constructor(
     private store: TechnologyLibraryService
   ) { }
 
   ngOnInit() {
+    this.generateWeb();
+  }
+
+  ngAfterViewInit() {
+  }
+
+  ngOnDestroy() {
+    this.elk.terminateWorker();
+  }
+
+  generateWeb() {
+    if (this.elk) {
+      this.elk.terminateWorker();
+      this.elk = undefined;
+      this.g = undefined;
+      this.nodes = undefined;
+      this.edges = undefined;
+    }
     this.elk = new ELK({
       workerUrl: 'assets/script/elk-worker.min.js',
       workerFactory: function(url: string) { return new Worker(url); }
     });
+
+    let partitionFor = (t: Technology) => {
+      if (t.tier == -2) {
+        return 5; // repeatable
+      }
+      return t.tier||0;
+    };
+
+    let tech_set = new Set();
+    let collectPrereqs_r = (t: Technology) => {
+      tech_set.add(t)
+      t.prerequisites.forEach((pr) => collectPrereqs_r(pr));
+    };
+    _.filter(this.store.techs, (t) => !this.filters.has(t.area))
+      .map((t) => collectPrereqs_r(t));
+    let techs = Array.from(tech_set.values());
 
     let i = 0;
     const graph = {
@@ -58,8 +93,8 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
         'elk.layered.contentAlignment': 'V_TOP',
         'elk.padding': '[left=100, top=200, right=300, bottom=300]'
       },
-      children:  this.store.techs.map((t) => ({ id: t.id, width: 250, height: 70, tech: t, layoutOptions: { 'elk.partitioning.partition': t.tier||0 } })),
-      edges: _.flatMap(this.store.techs, (t) => {
+      children: techs.map((t) => ({ id: t.id, width: 250, height: 70, tech: t, layoutOptions: { 'elk.partitioning.partition': partitionFor(t) } })),
+      edges: _.flatMap(techs, (t) => {
         if (t.prerequisites.length > 0) {
           //  return [{ id: `edge_`, sources: t.prerequisites.map((pr) => pr.id), targets: [t.id] }];
           return _.transform(t.prerequisites, (result, preReq) => {
@@ -80,13 +115,6 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
          this.edges = graph.edges;
        })
        .catch(console.error)
-  }
-
-  ngAfterViewInit() {
-  }
-
-  ngOnDestroy() {
-    this.elk.terminateWorker();
   }
 
   layoutNode(n: any) {
@@ -117,18 +145,10 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
     return out + `L ${end.x} ${end.y}`;
   }
 
-  edgeColor(e: any) {
-    return 'black';
-    // let end = this.g.node(e.w).tech;
-    // switch(end.area) {
-    //   case 'engineering': return "#E29C4388";
-    //   case 'physics': return "#4396E288";
-    //   case 'society': return "#5ACA9C88";
-    //   default: return 'black';
-    // }
-  }
-
   tierString(t: Technology) {
+    if (t.tier == -2) {
+      return "Repeatable";
+    }
     return (t.tier == 0) ? "Starting Tech" : `Tier: ${t.tier}`;
   }
 
@@ -148,10 +168,9 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
       'height.px': MINIMAP_DIMS.y*ele.offsetHeight/ele.scrollHeight
     }
   }
-
   onScroll(e: Event) {
-    //console.log(e);
   }
+
   onMinimapMousemove(e: MouseEvent) {
     if (e.buttons & 1) {
       let ele = this.viewport.nativeElement;
@@ -169,5 +188,15 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
       this.zoom = newZoom;
       ele.scrollLeft = normScrollX*ele.scrollWidth;
       ele.scrollTop = normScrollY*ele.scrollHeight;
+    }
+  }
+
+  toggleFilter(filter: string) {
+    if (this.filters.has(filter)) {
+      this.filters.delete(filter);
+    } else {
+      this.filters.add(filter);
+    }
+    this.generateWeb();
   }
 }

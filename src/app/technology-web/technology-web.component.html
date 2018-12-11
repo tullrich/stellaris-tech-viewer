@@ -9,7 +9,7 @@
           </marker>
         </defs>
         <path class="edge" *ngFor="let e of edges" [attr.d]="strokeEdge(e)"
-          [attr.stroke]="edgeColor(e)" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
+          stroke="black" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
       </svg>
     </div>
     <div class="tech-nodes">
@@ -40,8 +40,23 @@
     <div class="web-ctrl mr-1" (click)="incrementZoom(.1)">
       <i class="fas fa-search-plus text-light"></i>
     </div>
-    <div class="web-ctrl mr-auto" (click)="incrementZoom(-.1)">
+    <div class="web-ctrl mr-1" (click)="incrementZoom(-.1)">
       <i class="fas fa-search-minus text-light"></i>
+    </div>
+    <div class="web-ctrl mr-1 filter-eng"
+      (click)="toggleFilter('engineering')"
+      [class.disabled]="filters.has('engineering')">
+      <i class="fas fa-microscope text-light"></i>
+    </div>
+    <div class="web-ctrl mr-1 filter-phys"
+      (click)="toggleFilter('physics')"
+      [class.disabled]="filters.has('physics')">
+      <i class="fas fa-microscope text-light"></i>
+    </div>
+    <div class="web-ctrl filter-soc mr-auto"
+      (click)="toggleFilter('society')"
+      [class.disabled]="filters.has('society')">
+      <i class="fas fa-microscope text-light"></i>
     </div>
   </div>
   <div class="tech-web-minimap">

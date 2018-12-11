@@ -1,7 +1,7 @@
 
 export const TECH_DEFINES = {
 
-  '@repeatableTechTier': 10,
+  '@repeatableTechTier': -2,
 
   '@tier1cost1': 1,
   '@tier1cost2': 1,

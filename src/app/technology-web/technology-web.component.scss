@@ -215,6 +215,40 @@ $node-width: 250px;
         background-color: lighten(#343a40, 10%);
         box-shadow: 0px 0px 4px 0px rgba(0,0,0,.75);
       }
+
+      &.disabled {
+        opacity: .5;
+      }
+
+      &.filter-eng {
+        background-color: $color_eng;
+        &:hover {
+          background-color: darken($color_eng, 10%);
+        }
+        &:focus, &:active {
+          background-color: lighten($color_eng, 10%);
+        }
+      }
+
+      &.filter-phys {
+        background-color: $color_phys;
+        &:hover {
+          background-color: darken($color_phys, 10%);
+        }
+        &:focus, &:active {
+          background-color: lighten($color_phys, 10%);
+        }
+      }
+
+      &.filter-soc {
+        background-color: $color_soc;
+        &:hover {
+          background-color: darken($color_soc, 10%);
+        }
+        &:focus, &:active {
+          background-color: lighten($color_soc, 10%);
+        }
+      }
     }
   }
 }
