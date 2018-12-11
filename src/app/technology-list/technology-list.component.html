@@ -7,7 +7,8 @@
       <div *ngFor="let tech of store.techs" class="tech card my-2 align-top" [ngClass]="store.getAreaClass(tech)">
         <div class="card-body">
           <div class="float-left mr-3 icon">
-            <img src="assets/img/icons/{{ tech.id }}.png" height="52px" width="52px">
+            <img src="assets/img/icons/{{ tech.id }}.png" height="52px" width="52px"
+              onerror="this.src='assets/img/icons/unknown.png'">
           </div>
           <h5 class="card-title title" [class.rare]="tech.is_rare">{{ tech.name }}</h5>
           <div class="clearfix mb-3"></div>
