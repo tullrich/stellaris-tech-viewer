@@ -6,12 +6,15 @@ import * as _ from "lodash";
 declare var ELK;
 const elk = new ELK()
 
+const MINIMAP_DIMS = { x: 350.0, y: 350.0 };
+
 @Component({
   selector: 'app-technology-web',
   templateUrl: './technology-web.component.html',
   styleUrls: ['./technology-web.component.scss']
 })
 export class TechnologyWebComponent implements OnInit {
+  @ViewChild('viewport') viewport: ElementRef;
   g: any;
   nodes: any[];
   edges: any[];
@@ -26,10 +29,12 @@ export class TechnologyWebComponent implements OnInit {
       id: "root",
       layoutOptions: {
         'elk.algorithm': 'layered',
+        'elk.layered.unnecessaryBendpoints': true,
         'elk.layered.mergeEdges': true,
-        'elk.alignment': 'TOP',
+        'elk.alignment': 'CENTER',
+        'elk.aspectRatio': 1.0,
         'elk.layered.highDegreeNodes.treatment': true,
-        'elk.layered.highDegreeNodes.threshold': 6,
+        'elk.layered.highDegreeNodes.threshold': 4,
         'elk.direction': 'RIGHT',
         'elk.partitioning.activate': true,
         // 'elk.spacing.edgeEdge': 150.0,
@@ -58,8 +63,6 @@ export class TechnologyWebComponent implements OnInit {
         return [];
       })
     }
-    elk.knownLayoutOptions()
-      .then(console.log)
 
     elk.layout(graph)
        .then((graph) => {
@@ -74,7 +77,7 @@ export class TechnologyWebComponent implements OnInit {
   ngAfterViewInit() {
   }
 
-  layoutNode(n: dagre.Node) {
+  layoutNode(n: any) {
     return {
       'left.px': n.x,
       'top.px': n.y,
@@ -119,8 +122,22 @@ export class TechnologyWebComponent implements OnInit {
 
   minimapStyle() {
     return {
-      'transform': 'scale(' + 350/this.g.width + ', ' + 350/this.g.height + ')',
+      'transform': 'scale(' + MINIMAP_DIMS.x/this.g.width + ', ' + MINIMAP_DIMS.y/this.g.height + ')',
       'transform-origin': 'left top'
     }
+  }
+
+  minimapViewportStyle() {
+    let ele = this.viewport.nativeElement;
+    return {
+      'left.px': MINIMAP_DIMS.x*ele.scrollLeft/ele.scrollWidth,
+      'top.px': MINIMAP_DIMS.y*ele.scrollTop/ele.scrollHeight,
+      'width.px': MINIMAP_DIMS.x*ele.offsetWidth/ele.scrollWidth,
+      'height.px': MINIMAP_DIMS.y*ele.offsetHeight/ele.scrollHeight
+    }
+  }
+
+  onScroll(e: Event) {
+    //console.log(e);
   }
 }

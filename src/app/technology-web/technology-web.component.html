@@ -1,4 +1,4 @@
-<div class="tech-web-scrollable">
+<div #viewport class="tech-web-scrollable" (scroll)="onScroll($event)">
   <div class="tech-web-canvas">
     <div class="edge-canvas" *ngIf="g">
       <svg [attr.height.px]="g.height" [attr.width.px]="g.width">
@@ -32,7 +32,7 @@
     <div class="edge-canvas">
       <svg [attr.height.px]="g.height" [attr.width.px]="g.width">
         <path *ngFor="let e of edges" [attr.d]="strokeEdge(e)"
-          [attr.stroke]="edgeColor(e)" stroke-width="2" fill="none"  />
+          stroke="rgba(0,0,0,.5)" stroke-width="2" fill="none"  />
       </svg>
     </div>
     <div class="tech-nodes">
@@ -45,4 +45,5 @@
       </div>
     </div>
   </div>
+  <div class="minimap-vp" [ngStyle]="minimapViewportStyle()"></div>
 </div>

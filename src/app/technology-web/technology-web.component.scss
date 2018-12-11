@@ -88,11 +88,11 @@ $node-shadow: 0px 0px 55px -12px;
   position: fixed;
   right: 30px;
   bottom: 30px;
-  height: 394px;
-  width: 394px;
+  height: 354px;
+  width: 354px;
   overflow: hidden;
   z-index: 1000;
-  padding: 20px;
+  //padding: 20px;
   border: 2px solid #3994af;
   background-color: whitesmoke;
 
@@ -103,6 +103,9 @@ $node-shadow: 0px 0px 55px -12px;
 
     .tech-node {
       box-shadow: none !important;
+      border: none !important;
+      height: 60px !important;
+      width: 200px !important;
       &.tech-eng {
         background-color: $color_eng;
       }
@@ -113,5 +116,10 @@ $node-shadow: 0px 0px 55px -12px;
         background-color: $color_soc;
       }
     }
+  }
+
+  .minimap-vp {
+    border: 2px solid red;
+    position: absolute;
   }
 }
