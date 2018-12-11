@@ -1,5 +1,5 @@
 <div #viewport class="tech-web-scrollable" (scroll)="onScroll($event)">
-  <div class="tech-web-canvas" *ngIf="g; else loading">
+  <div class="tech-web-canvas" *ngIf="g; else loading" [attr.height.px]="g.height" [attr.width.px]="g.width">
     <div class="edge-canvas" >
       <svg [attr.height.px]="g.height" [attr.width.px]="g.width">
         <defs>
@@ -8,19 +8,19 @@
           </marker>
         </defs>
         <path class="edge" *ngFor="let e of edges" [attr.d]="strokeEdge(e)"
-          [attr.stroke]="edgeColor(e)" stroke-width="2" fill="none" marker-end="url(#arrow)" />
+          [attr.stroke]="edgeColor(e)" stroke-width="1.5" fill="none" marker-end="url(#arrow)" />
       </svg>
     </div>
     <div class="tech-nodes">
       <div class="tech-node" *ngFor="let n of nodes" [ngStyle]="layoutNode(n)"
         [class.rare]="n.tech.is_rare" [ngClass]="store.getAreaClass(n.tech)">
         <div class="icon">
-          <img src="assets/img/icons/{{ n.tech.id }}.png" height="29px" width="29px"
+          <img src="assets/img/icons/{{ n.tech.id }}.png"
             onerror="this.src='assets/img/icons/unknown.png'">
         </div>
         <div class="body">
           <p>{{ n.tech.name }}</p>
-          <small class="text-muted">{{ n.tech.category }} ({{ tierString(n.tech) }})</small>
+          <small>{{ n.tech.category }} ({{ tierString(n.tech) }})</small>
         </div>
       </div>
     </div>
@@ -43,14 +43,11 @@
       </svg>
     </div>
     <div class="tech-nodes">
-      <div class="tech-node" *ngFor="let n of nodes" [ngStyle]="layoutNode(n)"
+      <div class="tech-node-small" *ngFor="let n of nodes" [ngStyle]="layoutNode(n)"
         [class.rare]="n.tech.is_rare" [ngClass]="store.getAreaClass(n.tech)">
-        <div class="icon">
-        </div>
-        <div class="body">
-        </div>
       </div>
     </div>
   </div>
   <div class="minimap-vp" [ngStyle]="minimapViewportStyle()"></div>
+  <div class="mouse-capture"  (mousemove)="onMinimapMousemove($event)"></div>
 </div>

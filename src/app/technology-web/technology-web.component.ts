@@ -6,7 +6,7 @@ import * as _ from "lodash";
 declare var ELK;
 declare var Worker;
 
-const MINIMAP_DIMS = { x: 350.0, y: 350.0 };
+const MINIMAP_DIMS = { x: 250.0, y: 250.0 };
 
 @Component({
   selector: 'app-technology-web',
@@ -54,9 +54,10 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
         //'elk.layered.nodePlacement.bk.fixedAlignment': 'LEFTUP',
         'elk.layered.compaction.connectedComponents': true,
         'elk.separateConnectedComponents': false,
-        'elk.layered.contentAlignment': 'V_TOP'
+        'elk.layered.contentAlignment': 'V_TOP',
+        'elk.padding': '[left=100, top=200, right=300, bottom=300]'
       },
-      children:  this.store.techs.map((t) => ({ id: t.id, width: 168, height: 42, tech: t, layoutOptions: { 'elk.partitioning.partition': t.tier||0 } })),
+      children:  this.store.techs.map((t) => ({ id: t.id, width: 250, height: 70, tech: t, layoutOptions: { 'elk.partitioning.partition': t.tier||0 } })),
       edges: _.flatMap(this.store.techs, (t) => {
         if (t.prerequisites.length > 0) {
           //  return [{ id: `edge_`, sources: t.prerequisites.map((pr) => pr.id), targets: [t.id] }];
@@ -149,5 +150,13 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
 
   onScroll(e: Event) {
     //console.log(e);
+  }
+  onMinimapMousemove(e: MouseEvent) {
+    if (e.buttons & 1) {
+      let ele = this.viewport.nativeElement;
+      ele.scrollLeft = ele.scrollWidth*e.offsetX/MINIMAP_DIMS.x - ele.offsetWidth/2.0;
+      ele.scrollTop = ele.scrollHeight*e.offsetY/MINIMAP_DIMS.y - ele.offsetHeight/2.0;
+      console.log(e);
+    }
   }
 }
