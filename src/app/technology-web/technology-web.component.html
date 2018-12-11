@@ -1,5 +1,6 @@
 <div #viewport class="tech-web-scrollable" (scroll)="onScroll($event)">
-  <div class="tech-web-canvas" *ngIf="g; else loading" [attr.height.px]="g.height" [attr.width.px]="g.width">
+  <div class="tech-web-canvas" *ngIf="g; else loading" [attr.height.px]="g.height" [attr.width.px]="g.width"
+    [style.zoom]="zoom">
     <div class="edge-canvas" >
       <svg [attr.height.px]="g.height" [attr.width.px]="g.width">
         <defs>
@@ -34,20 +35,30 @@
 </div>
 
 
-<div class="tech-web-minimap" *ngIf="g">
-  <div class="tech-web-canvas" [ngStyle]="minimapStyle()">
-    <div class="edge-canvas">
-      <svg [attr.height.px]="g.height" [attr.width.px]="g.width">
-        <path *ngFor="let e of edges" [attr.d]="strokeEdge(e)"
-          stroke="rgba(0,0,0,.5)" stroke-width="2" fill="none"  />
-      </svg>
+<div class="minimap-holder" *ngIf="g">
+  <div class="controls mb-2 mx-1 d-flex">
+    <div class="web-ctrl mr-1" (click)="incrementZoom(.1)">
+      <i class="fas fa-search-plus text-light"></i>
     </div>
-    <div class="tech-nodes">
-      <div class="tech-node-small" *ngFor="let n of nodes" [ngStyle]="layoutNode(n)"
-        [class.rare]="n.tech.is_rare" [ngClass]="store.getAreaClass(n.tech)">
-      </div>
+    <div class="web-ctrl mr-auto" (click)="incrementZoom(-.1)">
+      <i class="fas fa-search-minus text-light"></i>
     </div>
   </div>
-  <div class="minimap-vp" [ngStyle]="minimapViewportStyle()"></div>
-  <div class="mouse-capture"  (mousemove)="onMinimapMousemove($event)"></div>
+  <div class="tech-web-minimap">
+    <div class="tech-web-canvas" [ngStyle]="minimapStyle()">
+      <div class="edge-canvas">
+        <svg [attr.height.px]="g.height" [attr.width.px]="g.width">
+          <path *ngFor="let e of edges" [attr.d]="strokeEdge(e)"
+            stroke="rgba(0,0,0,.5)" stroke-width="2" fill="none"  />
+        </svg>
+      </div>
+      <div class="tech-nodes">
+        <div class="tech-node-small" *ngFor="let n of nodes" [ngStyle]="layoutNode(n)"
+          [class.rare]="n.tech.is_rare" [ngClass]="store.getAreaClass(n.tech)">
+        </div>
+      </div>
+    </div>
+    <div class="minimap-vp" [ngStyle]="minimapViewportStyle()"></div>
+    <div class="mouse-capture"  (mousemove)="onMinimapMousemove($event)"></div>
+  </div>
 </div>

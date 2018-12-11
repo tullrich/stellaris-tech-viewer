@@ -134,57 +134,87 @@ $node-width: 250px;
   }
 }
 
-.tech-web-minimap {
+.minimap-holder {
   position: fixed;
   right: 30px;
   bottom: 30px;
-  height: 254px;
-  width: 254px;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   z-index: 1000;
-  //padding: 20px;
-  border: 1px solid gray;
   display: none;
-  box-shadow: 0px 0px 8px 0px rgba(0,0,0,1);
-  background-color: whitesmoke;
-  background-image: url("https://www.transparenttextures.com/patterns/p6.png");
   user-select: none;
+
 
   @media (min-width: 768px) {
     display: block;
   }
 
-  .tech-web-canvas {
-    min-height: 100%;
-    min-width: 100%;
+  .tech-web-minimap {
     position: relative;
+    height: 254px;
+    width: 254px;
+    overflow: hidden;
+    //padding: 20px;
+    border: 1px solid gray;
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,1);
+    background-color: whitesmoke;
+    background-image: url("https://www.transparenttextures.com/patterns/p6.png");
 
-    .tech-node-small {
+    .tech-web-canvas {
+      min-height: 100%;
+      min-width: 100%;
+      position: relative;
+
+      .tech-node-small {
+        position: absolute;
+        height: $node-height;
+        width: $node-width;
+        &.tech-eng {
+          background-color: $color_eng;
+        }
+        &.tech-phys {
+          background-color: $color_phys;
+        }
+        &.tech-soc {
+          background-color: $color_soc;
+        }
+      }
+    }
+
+    .minimap-vp {
+      border: 2px solid red;
       position: absolute;
-      height: $node-height;
-      width: $node-width;
-      &.tech-eng {
-        background-color: $color_eng;
-      }
-      &.tech-phys {
-        background-color: $color_phys;
-      }
-      &.tech-soc {
-        background-color: $color_soc;
-      }
+    }
+
+    .mouse-capture {
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      position: absolute;
     }
   }
 
-  .minimap-vp {
-    border: 2px solid red;
-    position: absolute;
-  }
+  .controls {
+    .web-ctrl {
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 0px 4px 0px rgba(0,0,0,1);
+      cursor: pointer;
+      transition: all .4s ease;
+      background-color: #343a40;
 
-  .mouse-capture {
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
+      &:hover {
+        background-color: darken(#343a40, 10%);
+      }
+      &:focus, &:active {
+        background-color: lighten(#343a40, 10%);
+        box-shadow: 0px 0px 4px 0px rgba(0,0,0,.75);
+      }
+    }
   }
 }

@@ -19,6 +19,7 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
   g: any;
   nodes: any[];
   edges: any[];
+  zoom = 1;
 
   constructor(
     private store: TechnologyLibraryService
@@ -156,7 +157,17 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
       let ele = this.viewport.nativeElement;
       ele.scrollLeft = ele.scrollWidth*e.offsetX/MINIMAP_DIMS.x - ele.offsetWidth/2.0;
       ele.scrollTop = ele.scrollHeight*e.offsetY/MINIMAP_DIMS.y - ele.offsetHeight/2.0;
-      console.log(e);
     }
+  }
+
+  incrementZoom(value: number) {
+    let newZoom = Math.min(Math.max(this.zoom + value, .2), 1.0);
+    if (newZoom != this.zoom) {
+      let ele = this.viewport.nativeElement;
+      let normScrollX = (ele.scrollLeft-ele.offsetWidth/2.0)/ele.scrollWidth;
+      let normScrollY = (ele.scrollTop-ele.offsetHeight/2.0)/ele.scrollHeight;
+      this.zoom = newZoom;
+      ele.scrollLeft = normScrollX*ele.scrollWidth;
+      ele.scrollTop = normScrollY*ele.scrollHeight;
   }
 }
