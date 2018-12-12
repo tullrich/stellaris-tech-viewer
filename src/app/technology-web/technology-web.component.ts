@@ -164,13 +164,6 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
     return out + `L ${end.x} ${end.y}`;
   }
 
-  tierString(t: Technology) {
-    if (t.tier == -2) {
-      return "Repeatable";
-    }
-    return (t.tier == 0) ? "Starting Tech" : `Tier: ${t.tier}`;
-  }
-
   minimapStyle() {
     return {
       'transform': 'scale(' + MINIMAP_DIMS.x/this.g.width + ', ' + MINIMAP_DIMS.y/this.g.height + ')',

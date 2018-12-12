@@ -92,6 +92,13 @@ export class TechnologyLibraryService {
     }
   }
 
+  tierString(t: Technology) {
+    if (t.tier == -2) {
+      return "Repeatable";
+    }
+    return (t.tier == 0) ? "Starting Tech" : `Tier: ${t.tier}`;
+  }
+
   getById(id: string): Technology|string {
     return this.techMap[id]||id;
   }

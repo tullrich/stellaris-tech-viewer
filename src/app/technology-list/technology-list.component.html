@@ -15,8 +15,9 @@
           <p class="card-text">{{ tech.description }}</p>
         </div>
         <div class="card-footer">
-          <small class="text-muted">{{ tech.category }} (Tier {{ tech.tier }})</small>
-          <br><small class="text-muted">Cost: {{ tech.cost }}, Weight: {{ tech.weight }}</small>
+          <small class="text-muted">{{ tech.category }} ({{ store.tierString(tech) }})</small>
+          <br><small class="text-muted" *ngIf="!tech.start_tech; else empty">Cost: {{ tech.cost }}, Weight: {{ tech.weight }}</small>
+          <ng-template #empty><small>&nbsp;</small></ng-template>
         </div>
       </div>
     </div>
