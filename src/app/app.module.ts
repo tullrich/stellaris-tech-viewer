@@ -17,7 +17,7 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/list',
+    redirectTo: '/web',
     pathMatch: 'full'
   },
   {
