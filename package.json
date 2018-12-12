@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-gh-pages": "ng build --prod --base-href https://stellaris-tech.pw/",
-    "deploy-gh-pages": "angular-cli-ghpages --dir dist/stellaris-tech-viewer/"
+    "deploy-gh-pages": "angular-cli-ghpages --dir dist/stellaris-tech-viewer/ --cname=stellaris-tech.pw"
   },
   "private": true,
   "dependencies": {
