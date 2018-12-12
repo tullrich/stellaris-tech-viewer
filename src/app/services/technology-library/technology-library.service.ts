@@ -11,6 +11,7 @@ declare var require;
 export class TechnologyLibraryService {
   localization = require('./localizations/technology_l.english.json');
   techs: Technology[];
+  techMap: any;
 
   constructor() {
     let techData = _.merge(
@@ -53,10 +54,10 @@ export class TechnologyLibraryService {
       })
       .value();
 
-    let techMap = _.keyBy(this.techs, (t) => t.id);
+    this.techMap = _.keyBy(this.techs, (t) => t.id);
     _.forEach(this.techs, (tech) => {
       if (tech.prerequisites) {
-        tech.prerequisites = _.map(tech.prerequisites, (prereq) => techMap[prereq]||prereq);
+        tech.prerequisites = _.map(tech.prerequisites, (prereq) => this.techMap[prereq]||prereq);
       }
     });
   }
@@ -89,5 +90,9 @@ export class TechnologyLibraryService {
       case 'society': return "tech-soc";
       default: return '';
     }
+  }
+
+  getById(id: string): Technology|string {
+    return this.techMap[id]||id;
   }
 }

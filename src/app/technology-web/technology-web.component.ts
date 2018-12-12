@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { Technology } from '../models/technology.model';
+import { WebCacheService } from '../services/web-cache/web-cache.service';
 import { TechnologyLibraryService } from '../services/technology-library/technology-library.service';
 import * as _ from "lodash";
 
@@ -23,7 +24,8 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
   filters = new Set();
 
   constructor(
-    private store: TechnologyLibraryService
+    private store: TechnologyLibraryService,
+    private cache: WebCacheService
   ) { }
 
   ngOnInit() {
@@ -34,17 +36,29 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.elk.terminateWorker();
+    if (this.elk) {
+      this.elk.terminateWorker();
+    }
   }
 
   generateWeb() {
     if (this.elk) {
       this.elk.terminateWorker();
       this.elk = undefined;
-      this.g = undefined;
-      this.nodes = undefined;
-      this.edges = undefined;
     }
+    this.g = undefined;
+    this.nodes = undefined;
+    this.edges = undefined;
+
+    let cached = this.cache.getWeb(Array.from(this.filters.values()));
+    if (cached) {
+      console.log("Cache found!");
+      this.g = cached.graph;
+      this.nodes = cached.nodes;
+      this.edges = cached.edges;
+      return;
+    }
+
     this.elk = new ELK({
       workerUrl: 'assets/script/elk-worker.min.js',
       workerFactory: function(url: string) { return new Worker(url); }
@@ -113,6 +127,11 @@ export class TechnologyWebComponent implements OnInit, OnDestroy {
          this.g = graph;
          this.nodes = graph.children;
          this.edges = graph.edges;
+         // this.cache.write({
+         //   graph: this.g,
+         //   nodes: this.nodes,
+         //   edges: this.edges
+         // });
        })
        .catch(console.error)
   }
